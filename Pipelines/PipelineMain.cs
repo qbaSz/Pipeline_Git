@@ -27,10 +27,9 @@ namespace Pipelines
 
         private void pbPipeline_MouseClick(object sender, MouseEventArgs e)
         {
-            
             if (buttonPump.Checked)
             {
-                pg.AddPump(new Point(e.X, e.Y));
+                pg.AddPump(Convert.ToDouble(numCurrentFlow.Value), Convert.ToDouble(numCapacity.Value), new Point(e.X, e.Y));
             }
             else if (buttonSink.Checked)
             {

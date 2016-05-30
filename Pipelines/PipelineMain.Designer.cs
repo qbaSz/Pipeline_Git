@@ -33,8 +33,14 @@
             this.buttonPump = new System.Windows.Forms.RadioButton();
             this.buttonSink = new System.Windows.Forms.RadioButton();
             this.buttonPipe = new System.Windows.Forms.RadioButton();
+            this.numCurrentFlow = new System.Windows.Forms.NumericUpDown();
+            this.labelCurrentFlow = new System.Windows.Forms.Label();
+            this.labelCapacity = new System.Windows.Forms.Label();
+            this.numCapacity = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pbPipeline)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCurrentFlow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).BeginInit();
             this.SuspendLayout();
             // 
             // pbPipeline
@@ -103,11 +109,47 @@
             this.buttonPipe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonPipe.UseVisualStyleBackColor = true;
             // 
+            // numCurrentFlow
+            // 
+            this.numCurrentFlow.Location = new System.Drawing.Point(13, 394);
+            this.numCurrentFlow.Name = "numCurrentFlow";
+            this.numCurrentFlow.Size = new System.Drawing.Size(62, 20);
+            this.numCurrentFlow.TabIndex = 2;
+            // 
+            // labelCurrentFlow
+            // 
+            this.labelCurrentFlow.AutoSize = true;
+            this.labelCurrentFlow.Location = new System.Drawing.Point(13, 375);
+            this.labelCurrentFlow.Name = "labelCurrentFlow";
+            this.labelCurrentFlow.Size = new System.Drawing.Size(66, 13);
+            this.labelCurrentFlow.TabIndex = 3;
+            this.labelCurrentFlow.Text = "Current Flow";
+            // 
+            // labelCapacity
+            // 
+            this.labelCapacity.AutoSize = true;
+            this.labelCapacity.Location = new System.Drawing.Point(13, 421);
+            this.labelCapacity.Name = "labelCapacity";
+            this.labelCapacity.Size = new System.Drawing.Size(48, 13);
+            this.labelCapacity.TabIndex = 4;
+            this.labelCapacity.Text = "Capacity";
+            // 
+            // numCapacity
+            // 
+            this.numCapacity.Location = new System.Drawing.Point(13, 438);
+            this.numCapacity.Name = "numCapacity";
+            this.numCapacity.Size = new System.Drawing.Size(62, 20);
+            this.numCapacity.TabIndex = 5;
+            // 
             // PipelineMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 525);
+            this.Controls.Add(this.numCapacity);
+            this.Controls.Add(this.labelCapacity);
+            this.Controls.Add(this.labelCurrentFlow);
+            this.Controls.Add(this.numCurrentFlow);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pbPipeline);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -116,7 +158,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPipeline)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCurrentFlow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCapacity)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -127,6 +172,10 @@
         private System.Windows.Forms.RadioButton buttonPump;
         private System.Windows.Forms.RadioButton buttonSink;
         private System.Windows.Forms.RadioButton buttonPipe;
+        private System.Windows.Forms.NumericUpDown numCurrentFlow;
+        private System.Windows.Forms.Label labelCurrentFlow;
+        private System.Windows.Forms.Label labelCapacity;
+        private System.Windows.Forms.NumericUpDown numCapacity;
     }
 }
 

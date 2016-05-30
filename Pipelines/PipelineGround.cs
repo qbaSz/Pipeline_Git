@@ -17,22 +17,22 @@ namespace Pipelines
             foreach (Pump p in pumpList)
             {
                 graphic.DrawEllipse(new Pen(Color.Aqua), p.Pos.X - p.Size / 2, p.Pos.Y - p.Size / 2, p.Size, p.Size);
-                graphic.DrawString(p.CurrentFlow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, p.Pos.X - 6, p.Pos.Y - 6);
+                graphic.DrawString(p.CurrentFlow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, p.Pos.X - p.Size/2, p.Pos.Y - 6);
             }
 
             foreach (Sink s in sinkList)
             {
                 graphic.DrawEllipse(new Pen(Color.Green), s.Pos.X - s.Size / 2, s.Pos.Y - s.Size / 2, s.Size, s.Size);
-                graphic.DrawString(s.Input.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, s.Pos.X - 6, s.Pos.Y - 6);
+                graphic.DrawString(s.Input.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, s.Pos.X - s.Size/2, s.Pos.Y - 6);
             }
         }
 
-        public void AddPump(Point pt)
+        public void AddPump(double currentFlow, double capacity, Point pt)
         {
 
             if(CheckCollosion(pt)) 
             {
-                Pump tempPump = new Pump(10, 5, pt);
+                Pump tempPump = new Pump(currentFlow, capacity, pt);
                 pumpList.Add(tempPump);   
             }
         }
@@ -42,7 +42,6 @@ namespace Pipelines
             if (CheckCollosion(pt))
             {
                 Sink tempSink = new Sink(pt);
-                tempSink.Size = 30;
                 tempSink.Input = 10;
                 sinkList.Add(tempSink);
 

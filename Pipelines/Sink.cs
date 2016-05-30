@@ -11,10 +11,10 @@ namespace Pipelines
     {
 
         private int input;
-        private int size;
+        private const int size = 40;
 
         public int Input { get { return input; } set { input = value; } }
-        public int Size { get { return size; } set { size = value; } }
+        public int Size { get { return size; } }
 
         public Sink(Point p)
         {
