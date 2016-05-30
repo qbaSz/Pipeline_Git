@@ -23,7 +23,7 @@ namespace Pipelines
         /// <param name="capacity_in">Maximum capacity of the pump</param>
         /// <param name="currentFlow_in">Amout of fuel currently flowing through pump</param>
         /// <param name="p">Position on the white board</param>
-        public Pump(double capacity_in, double currentFlow_in, Point p)
+        public Pump(double currentFlow_in, double capacity_in, Point p)
         {
             this.capacity = capacity_in;
             this.currentFlow = currentFlow_in;
