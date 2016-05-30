@@ -29,28 +29,45 @@ namespace Pipelines
 
         public void AddPump(Point pt)
         {
-            bool canPaint = true;
-            foreach (Pump pmp in pumpList)
-            {
-                if (Math.Abs(pmp.Pos.X - pt.X) < pmp.Size && Math.Abs(pmp.Pos.Y - pt.Y) < pmp.Size) 
-                {
-                    canPaint = false;
-                }
-            }
- 
-            if(canPaint) 
+
+            if(CheckCollosion(pt)) 
             {
                 Pump tempPump = new Pump(10, 5, pt);
                 pumpList.Add(tempPump);   
             }
         }
 
-        public void AddSink(Point p)
+        public void AddSink(Point pt)
         {
-            Sink tempSink = new Sink(p);
-            tempSink.Size = 30;
-            tempSink.Input = 10;
-            sinkList.Add(tempSink);
+            if (CheckCollosion(pt))
+            {
+                Sink tempSink = new Sink(pt);
+                tempSink.Size = 30;
+                tempSink.Input = 10;
+                sinkList.Add(tempSink);
+
+            }
+        }
+
+        public bool CheckCollosion(Point pt)
+        {
+            bool canPaint = true;
+            foreach (Pump pmp in pumpList)
+            {
+                if (Math.Abs(pmp.Pos.X - pt.X) < pmp.Size && Math.Abs(pmp.Pos.Y - pt.Y) < pmp.Size)
+                {
+                    canPaint = false;
+                }
+            }
+            foreach (Sink snk in sinkList)
+            {
+                if (Math.Abs(snk.Pos.X - pt.X) < snk.Size && Math.Abs(snk.Pos.Y - pt.Y) < snk.Size)
+                {
+                    canPaint = false;
+                }
+            }
+            return canPaint;
+ 
         }
     }
 }
