@@ -35,11 +35,24 @@ namespace Pipelines
             {
                 pg.AddSink(new Point(e.X, e.Y));
             }
-            else if (buttonPipe.Checked)
-            {
-                
-            }
 
+            pbPipeline.Invalidate();
+        }
+
+        private void pbPipeline_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (buttonPipe.Checked)
+            {
+                pg.AddStartPipePt(new Point(e.X, e.Y));
+            }
+        }
+
+        private void pbPipeline_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (buttonPipe.Checked)
+            {
+                pg.AddEndPipePt(new Point(e.X, e.Y));
+            }
             pbPipeline.Invalidate();
         }
     }

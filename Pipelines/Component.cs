@@ -9,6 +9,7 @@ namespace Pipelines
 {
     class Component
     {
+        private int size = 40;
         private Point pos;
 
         public Point Pos
@@ -16,5 +17,8 @@ namespace Pipelines
             get { return pos; }
             set { pos = value; }
         }
+
+        public int Size { get { return size; } }
+        public virtual void Draw(Graphics graphic) { }
     }
 }

@@ -9,21 +9,19 @@ namespace Pipelines
 {
     class PipelineGround
     {
-        List<Pump> pumpList = new List<Pump>();
-        List<Sink> sinkList = new List<Sink>();
+        List<Component> componentList = new List<Component>();
+        List<Pipe> pipeList = new List<Pipe>();
+        Pipe tempPipe = null;
 
         public void Paint(Graphics graphic)
         {
-            foreach (Pump p in pumpList)
+            foreach (Component cmp in componentList)
             {
-                graphic.DrawEllipse(new Pen(Color.Aqua), p.Pos.X - p.Size / 2, p.Pos.Y - p.Size / 2, p.Size, p.Size);
-                graphic.DrawString(p.CurrentFlow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, p.Pos.X - p.Size/2, p.Pos.Y - 6);
+                cmp.Draw(graphic);
             }
-
-            foreach (Sink s in sinkList)
+            foreach (Pipe pi in pipeList)
             {
-                graphic.DrawEllipse(new Pen(Color.Green), s.Pos.X - s.Size / 2, s.Pos.Y - s.Size / 2, s.Size, s.Size);
-                graphic.DrawString(s.Input.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, s.Pos.X - s.Size/2, s.Pos.Y - 6);
+                pi.Draw(graphic);
             }
         }
 
@@ -33,7 +31,7 @@ namespace Pipelines
             if(CheckCollosion(pt)) 
             {
                 Pump tempPump = new Pump(currentFlow, capacity, pt);
-                pumpList.Add(tempPump);   
+                componentList.Add(tempPump);   
             }
         }
 
@@ -42,25 +40,34 @@ namespace Pipelines
             if (CheckCollosion(pt))
             {
                 Sink tempSink = new Sink(pt);
-                tempSink.Input = 10;
-                sinkList.Add(tempSink);
+                componentList.Add(tempSink);
+            }
+        }
 
+        public void AddStartPipePt(Point pt)
+        {
+            if (!CheckCollosion(pt))
+            {
+                tempPipe = new Pipe();
+                tempPipe.StartPos = pt;
+            }
+        }
+
+        public void AddEndPipePt(Point pt)
+        {
+            if (tempPipe != null && !CheckCollosion(pt))
+            {
+                tempPipe.EndPos = pt;
+                pipeList.Add(tempPipe);
             }
         }
 
         public bool CheckCollosion(Point pt)
         {
             bool canPaint = true;
-            foreach (Pump pmp in pumpList)
+            foreach (Component cmp in componentList)
             {
-                if (Math.Abs(pmp.Pos.X - pt.X) < pmp.Size && Math.Abs(pmp.Pos.Y - pt.Y) < pmp.Size)
-                {
-                    canPaint = false;
-                }
-            }
-            foreach (Sink snk in sinkList)
-            {
-                if (Math.Abs(snk.Pos.X - pt.X) < snk.Size && Math.Abs(snk.Pos.Y - pt.Y) < snk.Size)
+                if (Math.Abs(cmp.Pos.X - pt.X) < cmp.Size && Math.Abs(cmp.Pos.Y - pt.Y) < cmp.Size)
                 {
                     canPaint = false;
                 }

@@ -53,6 +53,8 @@
             this.pbPipeline.TabStop = false;
             this.pbPipeline.Paint += new System.Windows.Forms.PaintEventHandler(this.pbPipeline_Paint);
             this.pbPipeline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbPipeline_MouseClick);
+            this.pbPipeline.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPipeline_MouseDown);
+            this.pbPipeline.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPipeline_MouseUp);
             // 
             // flowLayoutPanel1
             // 
