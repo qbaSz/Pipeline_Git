@@ -11,9 +11,11 @@ namespace Pipelines
     {
         private double capacity;
         private double currentFlow;
+        private Pipe outputPipe;
 
         public double Capacity { get { return capacity; } set { capacity = value; } }
         public double CurrentFlow { get { return currentFlow; } set { currentFlow = value; } }
+        public Pipe OutputPipe { get { return outputPipe; } set { outputPipe = value; } }
 
         /// <summary>
         /// Pump class representing fuel source.
@@ -26,12 +28,33 @@ namespace Pipelines
             this.capacity = capacity_in;
             this.currentFlow = currentFlow_in;
             this.Pos = p;
+            this.outputPipe = null;
         }
 
         public override void Draw(Graphics graphic)
         {
             graphic.FillEllipse(new SolidBrush(Color.Gray), this.Pos.X - this.Size / 2, this.Pos.Y - this.Size / 2, this.Size, this.Size);
             graphic.DrawString(this.CurrentFlow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, this.Pos.X - this.Size / 2, this.Pos.Y - 6);
+        }
+
+        public override bool AddPipe(Pipe ppe, io IO)
+        {
+            if (outputPipe == null && IO == io.output)
+            {
+                base.AddPipe(ppe, IO);
+                this.outputPipe = ppe;
+                return true;
+            }
+            return false;
+        }
+
+        public override void DeletePipe(Component.io IO)
+        {
+            if (IO == io.output)
+            {
+                base.DeletePipe(IO);
+                this.outputPipe = null;
+            }
         }
     }
 }

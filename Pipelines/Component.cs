@@ -11,6 +11,7 @@ namespace Pipelines
     {
         private int size = 40;
         private Point pos;
+        public enum io { input, output };
 
         public Point Pos
         {
@@ -20,5 +21,7 @@ namespace Pipelines
 
         public int Size { get { return size; } }
         public virtual void Draw(Graphics graphic) { }
+        public virtual bool AddPipe(Pipe ppe, io IO) { return false; }
+        public virtual void DeletePipe(io IO) { }
     }
 }

@@ -50,17 +50,28 @@ namespace Pipelines
             if (cmp != null)
             {
                 tempPipe = new Pipe();
-                tempPipe.StartComponent = cmp;
+                if (cmp.AddPipe(tempPipe, Component.io.output))
+                {
+                    tempPipe.StartComponent = cmp;
+                }
             }
         }
 
         public void AddEndPipePt(Point pt)
         {
             Component cmp = CheckCollosion(pt);
-            if (tempPipe != null && cmp != null)
+            if (tempPipe.StartComponent != null && cmp != null)
             {
-                tempPipe.EndComponent = cmp;
-                pipeList.Add(tempPipe);
+                if (cmp.AddPipe(tempPipe, Component.io.input))
+                {
+                    tempPipe.EndComponent = cmp;
+                    pipeList.Add(tempPipe);
+                }
+                else
+                {
+                    tempPipe.StartComponent.DeletePipe(Component.io.output);
+                }
+ 
             }
         }
 
