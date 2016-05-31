@@ -9,25 +9,26 @@ namespace Pipelines
 {
     class Pipe
     {
-        private Point startPos;
-        private Point endPos;
+        private Component startComponent;
+        private Component endComponent;
+        private bool isOverflow = false;
 
-        public Point EndPos
+        public Component EndComponent
         {
-            get { return endPos; }
-            set { endPos = value; }
+            get { return endComponent; }
+            set { endComponent = value; }
         }
 
 
-        public Point StartPos
+        public Component StartComponent
         {
-            get { return startPos; }
-            set { startPos = value; }
+            get { return startComponent; }
+            set { startComponent = value; }
         }
 
         public void Draw(Graphics graphic)
         {
-            graphic.DrawLine(new Pen(Color.Black), StartPos, EndPos);
+            graphic.DrawLine(new Pen(Color.Black, 8), StartComponent.Pos, EndComponent.Pos);
         }
         
     }

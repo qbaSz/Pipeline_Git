@@ -28,7 +28,7 @@ namespace Pipelines
         public void AddPump(double currentFlow, double capacity, Point pt)
         {
 
-            if(CheckCollosion(pt)) 
+            if(CheckCollosion(pt) == null) 
             {
                 Pump tempPump = new Pump(currentFlow, capacity, pt);
                 componentList.Add(tempPump);   
@@ -37,7 +37,7 @@ namespace Pipelines
 
         public void AddSink(Point pt)
         {
-            if (CheckCollosion(pt))
+            if (CheckCollosion(pt) == null)
             {
                 Sink tempSink = new Sink(pt);
                 componentList.Add(tempSink);
@@ -46,34 +46,34 @@ namespace Pipelines
 
         public void AddStartPipePt(Point pt)
         {
-            if (!CheckCollosion(pt))
+            Component cmp = CheckCollosion(pt);
+            if (cmp != null)
             {
                 tempPipe = new Pipe();
-                tempPipe.StartPos = pt;
+                tempPipe.StartComponent = cmp;
             }
         }
 
         public void AddEndPipePt(Point pt)
         {
-            if (tempPipe != null && !CheckCollosion(pt))
+            Component cmp = CheckCollosion(pt);
+            if (tempPipe != null && cmp != null)
             {
-                tempPipe.EndPos = pt;
+                tempPipe.EndComponent = cmp;
                 pipeList.Add(tempPipe);
             }
         }
 
-        public bool CheckCollosion(Point pt)
+        public Component CheckCollosion(Point pt)
         {
-            bool canPaint = true;
             foreach (Component cmp in componentList)
             {
                 if (Math.Abs(cmp.Pos.X - pt.X) < cmp.Size && Math.Abs(cmp.Pos.Y - pt.Y) < cmp.Size)
                 {
-                    canPaint = false;
+                    return cmp;
                 }
             }
-            return canPaint;
- 
+            return null;
         }
     }
 }
