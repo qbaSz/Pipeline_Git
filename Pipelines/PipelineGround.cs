@@ -15,13 +15,13 @@ namespace Pipelines
 
         public void Paint(Graphics graphic)
         {
-            foreach (Component cmp in componentList)
-            {
-                cmp.Draw(graphic);
-            }
             foreach (Pipe pi in pipeList)
             {
                 pi.Draw(graphic);
+            }
+            foreach (Component cmp in componentList)
+            {
+                cmp.Draw(graphic);
             }
         }
 
@@ -53,6 +53,7 @@ namespace Pipelines
                 if (cmp.AddPipe(tempPipe, Component.io.output))
                 {
                     tempPipe.StartComponent = cmp;
+                    tempPipe.Flow = tempPipe.StartComponent.getOutput();
                 }
             }
         }
@@ -71,7 +72,6 @@ namespace Pipelines
                 {
                     tempPipe.StartComponent.DeletePipe(Component.io.output);
                 }
- 
             }
         }
 

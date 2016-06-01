@@ -13,6 +13,15 @@ namespace Pipelines
         private Component endComponent;
         private bool isOverflow = false;
 
+        private double flow;
+
+        public double Flow
+        {
+            get { return flow; }
+            set { flow = value; }
+        }
+        
+
         public Component EndComponent
         {
             get { return endComponent; }
@@ -30,6 +39,8 @@ namespace Pipelines
         {
             graphic.DrawLine(new Pen(Color.Black, 8), StartComponent.Pos, EndComponent.Pos);
         }
+
+
         
     }
 }
