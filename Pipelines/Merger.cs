@@ -38,16 +38,25 @@ namespace Pipelines
                 if (inputPipe1 == null)
                 {
                     this.inputPipe1 = ppe;
+                    if(this.outputPipe != null)
+                    {
+                        this.outputPipe.Flow = this.inputPipe1.Flow;
+                    }
                     return true;
                 }
                 else if (inputPipe2 == null)
                 {
                     this.inputPipe2 = ppe;
+                    if (this.outputPipe != null)
+                    {
+                        this.outputPipe.Flow = this.getOutput();
+                    }
                     return true;
                 }
             }
             return false;
         }
+
         public override double getOutput()
         {
             if (this.inputPipe1 != null)
@@ -57,8 +66,17 @@ namespace Pipelines
                     return this.inputPipe1.Flow + this.inputPipe2.Flow;;
                 }
                 return this.inputPipe1.Flow;
-            }
+            } 
             return 0;
+        }
+
+        public override void DeletePipe(Component.io IO)
+        {
+            if (IO == io.output)
+            {
+                base.DeletePipe(IO);
+                this.outputPipe = null;
+            }
         }
     }
 }

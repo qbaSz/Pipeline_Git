@@ -10,10 +10,21 @@ namespace Pipelines
     class Sink : Component
     {
 
-        private double input = 0;
+        //private double input = 0;
         private Pipe inputPipe;
 
-        public double Input { get { return input; } set { input = value; } }
+        public double Input
+        { 
+            get
+            { 
+                if(inputPipe != null) 
+                { 
+                    return this.inputPipe.Flow; 
+                } 
+                return 0; 
+            }
+            //set { input = value; } 
+        }
 
         public Sink(Point p)
         {
@@ -33,7 +44,7 @@ namespace Pipelines
             {
                 base.AddPipe(ppe, IO);
                 this.inputPipe = ppe;
-                this.input = ppe.Flow;
+                //this.input = ppe.Flow;
                 return true;
             }
             return false;
