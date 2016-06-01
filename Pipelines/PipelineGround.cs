@@ -75,6 +75,15 @@ namespace Pipelines
             }
         }
 
+        public void AddMerger(Point pt)
+        {
+            if (CheckCollosion(pt) == null)
+            {
+                Merger tempMerger = new Merger(pt);
+                componentList.Add(tempMerger);
+            }
+        }
+
         public Component CheckCollosion(Point pt)
         {
             foreach (Component cmp in componentList)

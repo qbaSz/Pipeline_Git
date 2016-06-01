@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Component.cs" />
+    <Compile Include="Merger.cs" />
     <Compile Include="Pipe.cs" />
     <Compile Include="PipelineGround.cs" />
     <Compile Include="PipelineMain.cs">

@@ -37,6 +37,7 @@
             this.labelCurrentFlow = new System.Windows.Forms.Label();
             this.labelCapacity = new System.Windows.Forms.Label();
             this.numCapacity = new System.Windows.Forms.NumericUpDown();
+            this.buttonMerger = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbPipeline)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCurrentFlow)).BeginInit();
@@ -61,6 +62,7 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonPump);
             this.flowLayoutPanel1.Controls.Add(this.buttonSink);
             this.flowLayoutPanel1.Controls.Add(this.buttonPipe);
+            this.flowLayoutPanel1.Controls.Add(this.buttonMerger);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 13);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(62, 181);
@@ -143,6 +145,21 @@
             this.numCapacity.Size = new System.Drawing.Size(62, 20);
             this.numCapacity.TabIndex = 5;
             // 
+            // buttonMerger
+            // 
+            this.buttonMerger.Appearance = System.Windows.Forms.Appearance.Button;
+            this.buttonMerger.AutoSize = true;
+            this.buttonMerger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonMerger.Location = new System.Drawing.Point(3, 90);
+            this.buttonMerger.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonMerger.Name = "buttonMerger";
+            this.buttonMerger.Size = new System.Drawing.Size(50, 23);
+            this.buttonMerger.TabIndex = 3;
+            this.buttonMerger.TabStop = true;
+            this.buttonMerger.Text = "Merger";
+            this.buttonMerger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonMerger.UseVisualStyleBackColor = true;
+            // 
             // PipelineMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,6 +195,7 @@
         private System.Windows.Forms.Label labelCurrentFlow;
         private System.Windows.Forms.Label labelCapacity;
         private System.Windows.Forms.NumericUpDown numCapacity;
+        private System.Windows.Forms.RadioButton buttonMerger;
     }
 }
 
