@@ -57,7 +57,7 @@ namespace Pipelines
             }
         }
 
-        public override double getOutput()
+        public override double GetOutput()
         {
             return this.currentFlow;
         }

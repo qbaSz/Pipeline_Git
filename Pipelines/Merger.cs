@@ -49,7 +49,7 @@ namespace Pipelines
                     this.inputPipe2 = ppe;
                     if (this.outputPipe != null)
                     {
-                        this.outputPipe.Flow = this.getOutput();
+                        this.outputPipe.Flow = this.GetOutput();
                     }
                     return true;
                 }
@@ -57,7 +57,7 @@ namespace Pipelines
             return false;
         }
 
-        public override double getOutput()
+        public override double GetOutput()
         {
             if (this.inputPipe1 != null)
             {

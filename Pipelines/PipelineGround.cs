@@ -28,7 +28,7 @@ namespace Pipelines
         public void AddPump(double currentFlow, double capacity, Point pt)
         {
 
-            if(CheckCollosion(pt) == null) 
+            if(CheckCollision(pt) == null) 
             {
                 Pump tempPump = new Pump(currentFlow, capacity, pt);
                 componentList.Add(tempPump);   
@@ -37,7 +37,7 @@ namespace Pipelines
 
         public void AddSink(Point pt)
         {
-            if (CheckCollosion(pt) == null)
+            if (CheckCollision(pt) == null)
             {
                 Sink tempSink = new Sink(pt);
                 componentList.Add(tempSink);
@@ -46,21 +46,21 @@ namespace Pipelines
 
         public void AddStartPipePt(Point pt)
         {
-            Component cmp = CheckCollosion(pt);
+            Component cmp = CheckCollision(pt);
             if (cmp != null)
             {
                 tempPipe = new Pipe();
                 if (cmp.AddPipe(tempPipe, Component.io.output))
                 {
                     tempPipe.StartComponent = cmp;
-                    tempPipe.Flow = tempPipe.StartComponent.getOutput();
+                    tempPipe.Flow = tempPipe.StartComponent.GetOutput();
                 }
             }
         }
 
         public void AddEndPipePt(Point pt)
         {
-            Component cmp = CheckCollosion(pt);
+            Component cmp = CheckCollision(pt);
             if (tempPipe.StartComponent != null && cmp != null)
             {
                 if (cmp.AddPipe(tempPipe, Component.io.input))
@@ -77,14 +77,14 @@ namespace Pipelines
 
         public void AddMerger(Point pt)
         {
-            if (CheckCollosion(pt) == null)
+            if (CheckCollision(pt) == null)
             {
                 Merger tempMerger = new Merger(pt);
                 componentList.Add(tempMerger);
             }
         }
 
-        public Component CheckCollosion(Point pt)
+        public Component CheckCollision(Point pt)
         {
             foreach (Component cmp in componentList)
             {
