@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Pipelines
 {
@@ -61,17 +62,25 @@ namespace Pipelines
         public void AddEndPipePt(Point pt)
         {
             Component cmp = CheckCollision(pt);
-            if (tempPipe.StartComponent != null && cmp != null)
+            try
             {
-                if (cmp.AddPipe(tempPipe, Component.io.input))
+                if (tempPipe.StartComponent != null && cmp != null)
                 {
-                    tempPipe.EndComponent = cmp;
-                    pipeList.Add(tempPipe);
+                    if (cmp.AddPipe(tempPipe, Component.io.input))
+                    {
+                        tempPipe.EndComponent = cmp;
+                        pipeList.Add(tempPipe);
+                    }
+                    else
+                    {
+                        tempPipe.StartComponent.DeletePipe(Component.io.output);
+                    }
+
                 }
-                else
-                {
-                    tempPipe.StartComponent.DeletePipe(Component.io.output);
-                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please draw pump or sink first");
             }
         }
 
