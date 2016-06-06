@@ -33,11 +33,12 @@
             this.buttonPump = new System.Windows.Forms.RadioButton();
             this.buttonSink = new System.Windows.Forms.RadioButton();
             this.buttonPipe = new System.Windows.Forms.RadioButton();
+            this.buttonMerger = new System.Windows.Forms.RadioButton();
             this.numCurrentFlow = new System.Windows.Forms.NumericUpDown();
             this.labelCurrentFlow = new System.Windows.Forms.Label();
             this.labelCapacity = new System.Windows.Forms.Label();
             this.numCapacity = new System.Windows.Forms.NumericUpDown();
-            this.buttonMerger = new System.Windows.Forms.RadioButton();
+            this.buttonDelete = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbPipeline)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCurrentFlow)).BeginInit();
@@ -63,6 +64,7 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonSink);
             this.flowLayoutPanel1.Controls.Add(this.buttonPipe);
             this.flowLayoutPanel1.Controls.Add(this.buttonMerger);
+            this.flowLayoutPanel1.Controls.Add(this.buttonDelete);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 13);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(62, 181);
@@ -113,6 +115,21 @@
             this.buttonPipe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonPipe.UseVisualStyleBackColor = true;
             // 
+            // buttonMerger
+            // 
+            this.buttonMerger.Appearance = System.Windows.Forms.Appearance.Button;
+            this.buttonMerger.AutoSize = true;
+            this.buttonMerger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonMerger.Location = new System.Drawing.Point(3, 90);
+            this.buttonMerger.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonMerger.Name = "buttonMerger";
+            this.buttonMerger.Size = new System.Drawing.Size(50, 23);
+            this.buttonMerger.TabIndex = 3;
+            this.buttonMerger.TabStop = true;
+            this.buttonMerger.Text = "Merger";
+            this.buttonMerger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonMerger.UseVisualStyleBackColor = true;
+            // 
             // numCurrentFlow
             // 
             this.numCurrentFlow.Location = new System.Drawing.Point(13, 394);
@@ -145,20 +162,20 @@
             this.numCapacity.Size = new System.Drawing.Size(62, 20);
             this.numCapacity.TabIndex = 5;
             // 
-            // buttonMerger
+            // buttonDelete
             // 
-            this.buttonMerger.Appearance = System.Windows.Forms.Appearance.Button;
-            this.buttonMerger.AutoSize = true;
-            this.buttonMerger.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonMerger.Location = new System.Drawing.Point(3, 90);
-            this.buttonMerger.MinimumSize = new System.Drawing.Size(50, 0);
-            this.buttonMerger.Name = "buttonMerger";
-            this.buttonMerger.Size = new System.Drawing.Size(50, 23);
-            this.buttonMerger.TabIndex = 3;
-            this.buttonMerger.TabStop = true;
-            this.buttonMerger.Text = "Merger";
-            this.buttonMerger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.buttonMerger.UseVisualStyleBackColor = true;
+            this.buttonDelete.Appearance = System.Windows.Forms.Appearance.Button;
+            this.buttonDelete.AutoSize = true;
+            this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonDelete.Location = new System.Drawing.Point(3, 119);
+            this.buttonDelete.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(50, 23);
+            this.buttonDelete.TabIndex = 4;
+            this.buttonDelete.TabStop = true;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonDelete.UseVisualStyleBackColor = true;
             // 
             // PipelineMain
             // 
@@ -196,6 +213,7 @@
         private System.Windows.Forms.Label labelCapacity;
         private System.Windows.Forms.NumericUpDown numCapacity;
         private System.Windows.Forms.RadioButton buttonMerger;
+        private System.Windows.Forms.RadioButton buttonDelete;
     }
 }
 

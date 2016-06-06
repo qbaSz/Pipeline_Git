@@ -39,6 +39,10 @@ namespace Pipelines
             {
                 pg.AddMerger(new Point(e.X, e.Y));
             }
+            else if (buttonDelete.Checked)
+            {
+
+            }
 
             pbPipeline.Invalidate();
         }
