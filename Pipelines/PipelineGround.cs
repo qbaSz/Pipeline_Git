@@ -37,11 +37,11 @@ namespace Pipelines
             }
         }
 
-        public void AddSink(Point pt)
+        public void AddSink(Point pt, double capacity)
         {
             if (CheckCollision(pt) == null)
             {
-                Sink tempSink = new Sink(pt);
+                Sink tempSink = new Sink(pt, capacity);
                 componentList.Add(tempSink);
             }
         }

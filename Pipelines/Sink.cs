@@ -12,6 +12,7 @@ namespace Pipelines
 
         //private double input = 0;
         private Pipe inputPipe;
+        private double capacity = 0;
 
         public double Input
         { 
@@ -26,16 +27,18 @@ namespace Pipelines
             //set { input = value; } 
         }
 
-        public Sink(Point p)
+        public Sink(Point p, double capacity)
         {
             this.Pos = p;
             this.inputPipe = null;
+            this.capacity = capacity;
         }
 
         public override void Draw(Graphics graphic)
         {
             graphic.FillEllipse(new SolidBrush(Color.Gold), Pos.X - this.Size / 2, Pos.Y - this.Size / 2, this.Size, this.Size);
             graphic.DrawString(this.Input.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, Pos.X - this.Size / 2, Pos.Y - 6);
+            graphic.DrawString("Cap:" + this.capacity.ToString(), new Font("Arial", 10, FontStyle.Regular), Brushes.Blue, Pos.X - this.Size/2, Pos.Y + this.Size/2);
         }
 
         public override bool AddPipe(Pipe ppe, Component.io IO)
@@ -65,6 +68,11 @@ namespace Pipelines
         {
             base.DeletePipe(ppe);
             inputPipe = null;
+        }
+
+        public override double GetCapacity()
+        {
+            return this.capacity;
         }
     }
 }

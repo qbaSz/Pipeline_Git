@@ -33,7 +33,7 @@ namespace Pipelines
             }
             else if (buttonSink.Checked)
             {
-                pg.AddSink(new Point(e.X, e.Y));
+                pg.AddSink(new Point(e.X, e.Y), Convert.ToDouble(numCapacity.Value));
             }
             else if (buttonMerger.Checked)
             {

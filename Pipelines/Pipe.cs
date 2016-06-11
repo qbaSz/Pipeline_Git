@@ -11,7 +11,6 @@ namespace Pipelines
     {
         private Component startComponent;
         private Component endComponent;
-        private bool isOverflow = false;
         private const int width = 8;
 
         private double flow;
@@ -38,7 +37,19 @@ namespace Pipelines
 
         public void Draw(Graphics graphic)
         {
-            graphic.DrawLine(new Pen(Color.Black, width), StartComponent.Pos, EndComponent.Pos);
+            graphic.DrawLine(new Pen(Overflow(), width), StartComponent.Pos, EndComponent.Pos);
+        }
+
+        private Color Overflow()
+        {
+            if (EndComponent.GetType() != typeof(Merger))
+            {
+                if (StartComponent.GetOutput() > EndComponent.GetCapacity())
+                {
+                    return Color.Red;
+                }
+            }
+            return Color.Green;
         }
 
         public void Delete()

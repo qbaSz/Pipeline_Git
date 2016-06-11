@@ -25,5 +25,6 @@ namespace Pipelines
         public virtual void DeletePipe(Pipe ppe) { }
         public virtual void Delete(List<Pipe> pipeList) { }
         public virtual double GetOutput() { return 0; }
+        public virtual double GetCapacity() { return 0; }
     }
 }
