@@ -70,12 +70,42 @@ namespace Pipelines
             return 0;
         }
 
-        public override void DeletePipe(Component.io IO)
+        public override void DeletePipe(Pipe ppe)
         {
-            if (IO == io.output)
+            if (inputPipe1 == ppe)
             {
-                base.DeletePipe(IO);
-                this.outputPipe = null;
+                inputPipe1 = null;
+            }
+            else if (inputPipe2 == ppe)
+            {
+                inputPipe2 = null;
+            }
+            else if (outputPipe == ppe)
+            {
+                outputPipe = null;
+            }
+        }
+
+        public override void Delete(List<Pipe> pipeList)
+        {
+            base.Delete(pipeList);
+            if (inputPipe1 != null)
+            {
+                inputPipe1.StartComponent.DeletePipe(inputPipe1);
+                pipeList.Remove(inputPipe1);
+                inputPipe1 = null;
+            }
+            if (inputPipe2 != null)
+            {
+                inputPipe2.StartComponent.DeletePipe(inputPipe2);
+                pipeList.Remove(inputPipe2);
+                inputPipe2 = null;
+            }
+            if (outputPipe != null)
+            {
+                outputPipe.EndComponent.DeletePipe(outputPipe);
+                pipeList.Remove(outputPipe);
+                outputPipe = null;
             }
         }
     }

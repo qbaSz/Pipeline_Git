@@ -49,5 +49,22 @@ namespace Pipelines
             }
             return false;
         }
+
+        public override void Delete(List<Pipe> pipeList)
+        {
+            base.Delete(pipeList);
+            if (inputPipe != null)
+            {
+                inputPipe.StartComponent.DeletePipe(inputPipe);
+                pipeList.Remove(inputPipe);
+                inputPipe = null;
+            }
+        }
+
+        public override void DeletePipe(Pipe ppe)
+        {
+            base.DeletePipe(ppe);
+            inputPipe = null;
+        }
     }
 }

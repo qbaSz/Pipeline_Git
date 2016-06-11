@@ -73,7 +73,7 @@ namespace Pipelines
                     }
                     else
                     {
-                        tempPipe.StartComponent.DeletePipe(Component.io.output);
+                        tempPipe.StartComponent.DeletePipe(tempPipe);
                     }
 
                 }
@@ -103,6 +103,16 @@ namespace Pipelines
                 }
             }
             return null;
+        }
+
+        public void Delete(Point pt)
+        {
+            Component cmp = CheckCollision(pt);
+            if (cmp != null)
+            {
+                cmp.Delete(pipeList);
+                componentList.Remove(cmp);
+            }
         }
     }
 }

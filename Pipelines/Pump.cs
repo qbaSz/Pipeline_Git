@@ -48,11 +48,10 @@ namespace Pipelines
             return false;
         }
 
-        public override void DeletePipe(Component.io IO)
+        public override void DeletePipe(Pipe ppe)
         {
-            if (IO == io.output)
+            if (this.outputPipe == ppe)
             {
-                base.DeletePipe(IO);
                 this.outputPipe = null;
             }
         }
@@ -60,6 +59,16 @@ namespace Pipelines
         public override double GetOutput()
         {
             return this.currentFlow;
+        }
+
+        public override void Delete(List<Pipe> pipeList)
+        {
+            if (outputPipe != null)
+            {
+                outputPipe.EndComponent.DeletePipe(outputPipe);
+                pipeList.Remove(outputPipe);
+                outputPipe = null;
+            }
         }
     }
 }

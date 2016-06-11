@@ -41,7 +41,7 @@ namespace Pipelines
             }
             else if (buttonDelete.Checked)
             {
-
+                pg.Delete(new Point(e.X, e.Y));
             }
 
             pbPipeline.Invalidate();

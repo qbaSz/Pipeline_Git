@@ -22,7 +22,8 @@ namespace Pipelines
         public int Size { get { return size; } }
         public virtual void Draw(Graphics graphic) { }
         public virtual bool AddPipe(Pipe ppe, io IO) { return false; }
-        public virtual void DeletePipe(io IO) { }
+        public virtual void DeletePipe(Pipe ppe) { }
+        public virtual void Delete(List<Pipe> pipeList) { }
         public virtual double GetOutput() { return 0; }
     }
 }
