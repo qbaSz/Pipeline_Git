@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Pipelines
 {
     class PipelineGround
@@ -105,13 +106,31 @@ namespace Pipelines
             return null;
         }
 
+        public Pipe CheckCollisionPipe(Point pt)
+        {
+            foreach (Pipe p in pipeList)
+            {
+                if (p.Contains(pt))
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
+
         public void Delete(Point pt)
         {
             Component cmp = CheckCollision(pt);
+            Pipe ppe = CheckCollisionPipe(pt);
             if (cmp != null)
             {
                 cmp.Delete(pipeList);
                 componentList.Remove(cmp);
+            }
+            else if (ppe != null)
+            {
+                ppe.Delete();
+                pipeList.Remove(ppe);
             }
         }
     }
