@@ -31,6 +31,14 @@ namespace Pipelines
             if (IO == io.output && this.outputPipe == null)
             {
                 this.outputPipe = ppe;
+                if (inputPipe1 != null)
+                {
+                    this.outputPipe.Flow += inputPipe1.Flow;
+                }
+                if (inputPipe2 != null)
+                {
+                    this.outputPipe.Flow += inputPipe2.Flow;
+                }
                 return true;
             }
             else if (IO == io.input)
@@ -41,6 +49,10 @@ namespace Pipelines
                     if(this.outputPipe != null)
                     {
                         this.outputPipe.Flow = this.inputPipe1.Flow;
+                        if (inputPipe2 != null)
+                        {
+                            this.outputPipe.Flow += this.inputPipe2.Flow;
+                        }
                     }
                     return true;
                 }
@@ -49,25 +61,16 @@ namespace Pipelines
                     this.inputPipe2 = ppe;
                     if (this.outputPipe != null)
                     {
-                        this.outputPipe.Flow = this.GetOutput();
+                        this.outputPipe.Flow = inputPipe2.Flow;
+                        if (this.inputPipe1 != null)
+                        {
+                            this.outputPipe.Flow += inputPipe1.Flow;
+                        } 
                     }
                     return true;
                 }
             }
             return false;
-        }
-
-        public override double GetOutput()
-        {
-            if (this.inputPipe1 != null)
-            {
-                if (this.inputPipe2 != null)
-                {
-                    return this.inputPipe1.Flow + this.inputPipe2.Flow;;
-                }
-                return this.inputPipe1.Flow;
-            } 
-            return 0;
         }
 
         public override void DeletePipe(Pipe ppe)

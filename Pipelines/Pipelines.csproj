@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjustableSplitter.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Merger.cs" />
     <Compile Include="Pipe.cs" />

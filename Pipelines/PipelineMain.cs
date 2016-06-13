@@ -47,6 +47,10 @@ namespace Pipelines
             {
                 pg.AddSplitter(new Point(e.X, e.Y));
             }
+            else if (buttonAdjSplitter.Checked)
+            {
+                pg.AddAdjustableSplitter(new Point(e.X, e.Y), Convert.ToDouble(numPercentage.Value / 100));
+            }
 
             pbPipeline.Invalidate();
         }

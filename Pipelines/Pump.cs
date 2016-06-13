@@ -43,6 +43,7 @@ namespace Pipelines
             {
                 base.AddPipe(ppe, IO);
                 this.outputPipe = ppe;
+                this.outputPipe.Flow = this.currentFlow;
                 return true;
             }
             return false;

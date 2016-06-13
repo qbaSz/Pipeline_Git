@@ -55,7 +55,7 @@ namespace Pipelines
                 if (cmp.AddPipe(tempPipe, Component.io.output))
                 {
                     tempPipe.StartComponent = cmp;
-                    tempPipe.Flow = tempPipe.StartComponent.GetOutput();
+                    //tempPipe.Flow = tempPipe.StartComponent.GetOutput();
                 }
             }
         }
@@ -99,6 +99,15 @@ namespace Pipelines
             if (CheckCollision(pt) == null)
             {
                 Splitter tempSplitter = new Splitter(pt);
+                componentList.Add(tempSplitter);
+            }
+        }
+
+        public void AddAdjustableSplitter(Point pt, double percentage)
+        {
+            if (CheckCollision(pt) == null)
+            {
+                AdjustableSplitter tempSplitter = new AdjustableSplitter(pt, percentage);
                 componentList.Add(tempSplitter);
             }
         }

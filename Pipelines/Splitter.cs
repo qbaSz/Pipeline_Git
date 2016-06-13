@@ -33,9 +33,18 @@ namespace Pipelines
             set { outputPipe2 = value; }
         }
 
+        private double percentOut1 = 0;
+
+        public double PercentOut1
+        {
+            get { return percentOut1; }
+            set { percentOut1 = value; }
+        }
+
         public Splitter(Point pt)
         {
             this.Pos = pt;
+            this.percentOut1 = 0.5;
         }
 
         public override void Draw(Graphics graphic)
@@ -50,11 +59,11 @@ namespace Pipelines
                 inputPipe = ppe;
                 if (outputPipe1 != null)
                 {
-                    outputPipe1.Flow = inputPipe.Flow / 2;
+                    outputPipe1.Flow = inputPipe.Flow * this.percentOut1;
                 }
                 if (outputPipe2 != null)
                 {
-                    outputPipe2.Flow = inputPipe.Flow / 2;
+                    outputPipe2.Flow = inputPipe.Flow * (1 - this.percentOut1);
                 }
                 return true;
             }
@@ -63,11 +72,21 @@ namespace Pipelines
                 if (outputPipe1 == null)
                 {
                     outputPipe1 = ppe;
+                    if (inputPipe != null)
+                    {
+                        outputPipe1.Flow = inputPipe.Flow * PercentOut1;
+                    }
+                    outputPipe1.Label = 'A';
                     return true;
                 }
                 else if (outputPipe2 == null)
                 {
                     outputPipe2 = ppe;
+                    if (inputPipe != null)
+                    {
+                        outputPipe2.Flow = inputPipe.Flow * (1 - PercentOut1);
+                    }
+                    outputPipe2.Label = 'B';
                     return true;
                 }
             }
@@ -116,7 +135,7 @@ namespace Pipelines
         {
             if (inputPipe != null)
             {
-                return inputPipe.Flow / 2;
+                return inputPipe.Flow * this.percentOut1;
             }
             return 0;
         }

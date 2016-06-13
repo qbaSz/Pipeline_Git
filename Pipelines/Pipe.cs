@@ -12,6 +12,14 @@ namespace Pipelines
         private Component startComponent;
         private Component endComponent;
         private const int width = 8;
+        private const int labelDistance = 50;
+        private char label = ' ';
+        private double a, b;
+
+        public char Label
+        {
+            set { label = value; }
+        }
 
         private double flow;
 
@@ -38,6 +46,12 @@ namespace Pipelines
         public void Draw(Graphics graphic)
         {
             graphic.DrawLine(new Pen(Overflow(), width), StartComponent.Pos, EndComponent.Pos);
+            if (StartComponent.GetType() == typeof(Splitter) || StartComponent.GetType() == typeof(AdjustableSplitter))
+	        {
+                CalculateLineEquation();
+                graphic.DrawString(this.label.ToString(), new Font("Arial", 12, FontStyle.Bold), Brushes.Black, (int)CalculateLabelX(), (int)(a * CalculateLabelX() + b));
+	        }
+            
         }
 
         private Color Overflow()
@@ -78,8 +92,7 @@ namespace Pipelines
                 else
                 {
                     //y = ax + b
-                    double a = (double)(StartComponent.Pos.Y - EndComponent.Pos.Y) / (double)(StartComponent.Pos.X - EndComponent.Pos.X);
-                    double b = StartComponent.Pos.Y - a * StartComponent.Pos.X;
+                    CalculateLineEquation();
                     if (pt.Y > (a * pt.X + b - 4) && pt.Y < (a * pt.X + b + 4))
                     {
                         return true;
@@ -88,6 +101,18 @@ namespace Pipelines
             }
             return false;
         }
-        
+
+        private void CalculateLineEquation()
+        {
+            this.a = (double)(StartComponent.Pos.Y - EndComponent.Pos.Y) / (double)(StartComponent.Pos.X - EndComponent.Pos.X);
+            this.b = StartComponent.Pos.Y - a * StartComponent.Pos.X;
+        }
+
+        private double CalculateLabelX()
+        {
+            double pipeLength = Math.Sqrt(Math.Pow(EndComponent.Pos.X - StartComponent.Pos.X, 2) + Math.Pow(EndComponent.Pos.Y - StartComponent.Pos.Y, 2));
+            return (labelDistance * (EndComponent.Pos.X - StartComponent.Pos.X))/(pipeLength) + StartComponent.Pos.X;
+        }
+
     }
 }

@@ -47,7 +47,6 @@ namespace Pipelines
             {
                 base.AddPipe(ppe, IO);
                 this.inputPipe = ppe;
-                //this.input = ppe.Flow;
                 return true;
             }
             return false;
