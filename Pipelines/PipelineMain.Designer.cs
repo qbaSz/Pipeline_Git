@@ -91,6 +91,7 @@
             this.buttonPump.Text = "Pump";
             this.buttonPump.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonPump.UseVisualStyleBackColor = true;
+            this.buttonPump.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonPump_MouseClick);
             // 
             // buttonSink
             // 
@@ -106,6 +107,7 @@
             this.buttonSink.Text = "Sink";
             this.buttonSink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonSink.UseVisualStyleBackColor = true;
+            this.buttonSink.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonSink_MouseClick);
             // 
             // buttonPipe
             // 
@@ -121,6 +123,7 @@
             this.buttonPipe.Text = "Pipe";
             this.buttonPipe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonPipe.UseVisualStyleBackColor = true;
+            this.buttonPipe.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonPipe_MouseClick);
             // 
             // buttonMerger
             // 
@@ -136,6 +139,7 @@
             this.buttonMerger.Text = "Merger";
             this.buttonMerger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonMerger.UseVisualStyleBackColor = true;
+            this.buttonMerger.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonMerger_MouseClick);
             // 
             // buttonSplitter
             // 
@@ -151,6 +155,7 @@
             this.buttonSplitter.Text = "Splitter";
             this.buttonSplitter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonSplitter.UseVisualStyleBackColor = true;
+            this.buttonSplitter.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonSplitter_MouseClick);
             // 
             // buttonAdjSplitter
             // 
@@ -165,6 +170,7 @@
             this.buttonAdjSplitter.Text = "Adjustable Splitter";
             this.buttonAdjSplitter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonAdjSplitter.UseVisualStyleBackColor = true;
+            this.buttonAdjSplitter.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonAdjSplitter_MouseClick);
             // 
             // buttonDelete
             // 
@@ -180,6 +186,7 @@
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDelete_MouseClick);
             // 
             // numCurrentFlow
             // 

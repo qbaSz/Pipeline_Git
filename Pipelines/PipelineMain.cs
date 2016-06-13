@@ -18,6 +18,7 @@ namespace Pipelines
         public PipelineMain()
         {
             InitializeComponent();
+            NumInputsToggle(false, true, true);
         }
 
         private void pbPipeline_Paint(object sender, PaintEventArgs e)
@@ -71,5 +72,67 @@ namespace Pipelines
             }
             pbPipeline.Invalidate();
         }
+
+        private void NumPercentageToggle(bool visible)
+        {
+            labelPercentage.Visible = visible;
+            numPercentage.Visible = visible;
+        }
+
+        private void NumCurrentFlowToggle(bool visible)
+        {
+            labelCurrentFlow.Visible = visible;
+            numCurrentFlow.Visible = visible;
+        }
+
+        private void NumCapacityFlowToggle(bool visible)
+        {
+            labelCapacity.Visible = visible;
+            numCapacity.Visible = visible;
+        }
+
+        private void NumInputsToggle(bool percentage_visible, bool flow_visible, bool capacity_visible)
+        {
+            NumPercentageToggle(percentage_visible);
+            NumCurrentFlowToggle(flow_visible);
+            NumCapacityFlowToggle(capacity_visible);
+        }
+
+        private void buttonPump_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(false, true, true);
+        }
+
+        private void buttonSink_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(false, false, true);
+        }
+
+        private void buttonPipe_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(false, false, true);
+        }
+
+        private void buttonMerger_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(false, false, false);
+        }
+
+        private void buttonSplitter_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(false, false, false);
+        }
+
+        private void buttonAdjSplitter_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(true, false, false);
+        }
+
+        private void buttonDelete_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(false, false, false);
+        }
+
+
     }
 }
