@@ -34,10 +34,12 @@
             this.buttonSink = new System.Windows.Forms.RadioButton();
             this.buttonPipe = new System.Windows.Forms.RadioButton();
             this.buttonMerger = new System.Windows.Forms.RadioButton();
+            this.buttonSplitter = new System.Windows.Forms.RadioButton();
             this.numCurrentFlow = new System.Windows.Forms.NumericUpDown();
             this.labelCurrentFlow = new System.Windows.Forms.Label();
             this.labelCapacity = new System.Windows.Forms.Label();
             this.numCapacity = new System.Windows.Forms.NumericUpDown();
+            this.buttonAdjSplitter = new System.Windows.Forms.RadioButton();
             this.buttonDelete = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pbPipeline)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -64,10 +66,12 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonSink);
             this.flowLayoutPanel1.Controls.Add(this.buttonPipe);
             this.flowLayoutPanel1.Controls.Add(this.buttonMerger);
+            this.flowLayoutPanel1.Controls.Add(this.buttonSplitter);
+            this.flowLayoutPanel1.Controls.Add(this.buttonAdjSplitter);
             this.flowLayoutPanel1.Controls.Add(this.buttonDelete);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(13, 13);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 13);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(62, 181);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(71, 231);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // buttonPump
@@ -76,9 +80,9 @@
             this.buttonPump.AutoSize = true;
             this.buttonPump.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonPump.Location = new System.Drawing.Point(3, 3);
-            this.buttonPump.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonPump.MinimumSize = new System.Drawing.Size(67, 0);
             this.buttonPump.Name = "buttonPump";
-            this.buttonPump.Size = new System.Drawing.Size(50, 23);
+            this.buttonPump.Size = new System.Drawing.Size(67, 23);
             this.buttonPump.TabIndex = 0;
             this.buttonPump.TabStop = true;
             this.buttonPump.Text = "Pump";
@@ -91,9 +95,9 @@
             this.buttonSink.AutoSize = true;
             this.buttonSink.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonSink.Location = new System.Drawing.Point(3, 32);
-            this.buttonSink.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonSink.MinimumSize = new System.Drawing.Size(67, 0);
             this.buttonSink.Name = "buttonSink";
-            this.buttonSink.Size = new System.Drawing.Size(50, 23);
+            this.buttonSink.Size = new System.Drawing.Size(67, 23);
             this.buttonSink.TabIndex = 1;
             this.buttonSink.TabStop = true;
             this.buttonSink.Text = "Sink";
@@ -106,9 +110,9 @@
             this.buttonPipe.AutoSize = true;
             this.buttonPipe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonPipe.Location = new System.Drawing.Point(3, 61);
-            this.buttonPipe.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonPipe.MinimumSize = new System.Drawing.Size(67, 0);
             this.buttonPipe.Name = "buttonPipe";
-            this.buttonPipe.Size = new System.Drawing.Size(50, 23);
+            this.buttonPipe.Size = new System.Drawing.Size(67, 23);
             this.buttonPipe.TabIndex = 2;
             this.buttonPipe.TabStop = true;
             this.buttonPipe.Text = "Pipe";
@@ -121,14 +125,29 @@
             this.buttonMerger.AutoSize = true;
             this.buttonMerger.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonMerger.Location = new System.Drawing.Point(3, 90);
-            this.buttonMerger.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonMerger.MinimumSize = new System.Drawing.Size(67, 0);
             this.buttonMerger.Name = "buttonMerger";
-            this.buttonMerger.Size = new System.Drawing.Size(50, 23);
+            this.buttonMerger.Size = new System.Drawing.Size(67, 23);
             this.buttonMerger.TabIndex = 3;
             this.buttonMerger.TabStop = true;
             this.buttonMerger.Text = "Merger";
             this.buttonMerger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonMerger.UseVisualStyleBackColor = true;
+            // 
+            // buttonSplitter
+            // 
+            this.buttonSplitter.Appearance = System.Windows.Forms.Appearance.Button;
+            this.buttonSplitter.AutoSize = true;
+            this.buttonSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSplitter.Location = new System.Drawing.Point(3, 119);
+            this.buttonSplitter.MinimumSize = new System.Drawing.Size(67, 0);
+            this.buttonSplitter.Name = "buttonSplitter";
+            this.buttonSplitter.Size = new System.Drawing.Size(67, 23);
+            this.buttonSplitter.TabIndex = 5;
+            this.buttonSplitter.TabStop = true;
+            this.buttonSplitter.Text = "Splitter";
+            this.buttonSplitter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonSplitter.UseVisualStyleBackColor = true;
             // 
             // numCurrentFlow
             // 
@@ -162,16 +181,30 @@
             this.numCapacity.Size = new System.Drawing.Size(62, 20);
             this.numCapacity.TabIndex = 5;
             // 
+            // buttonAdjSplitter
+            // 
+            this.buttonAdjSplitter.Appearance = System.Windows.Forms.Appearance.Button;
+            this.buttonAdjSplitter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonAdjSplitter.Location = new System.Drawing.Point(3, 148);
+            this.buttonAdjSplitter.MinimumSize = new System.Drawing.Size(67, 50);
+            this.buttonAdjSplitter.Name = "buttonAdjSplitter";
+            this.buttonAdjSplitter.Size = new System.Drawing.Size(67, 50);
+            this.buttonAdjSplitter.TabIndex = 6;
+            this.buttonAdjSplitter.TabStop = true;
+            this.buttonAdjSplitter.Text = "Adjustable Splitter";
+            this.buttonAdjSplitter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonAdjSplitter.UseVisualStyleBackColor = true;
+            // 
             // buttonDelete
             // 
             this.buttonDelete.Appearance = System.Windows.Forms.Appearance.Button;
             this.buttonDelete.AutoSize = true;
             this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonDelete.Location = new System.Drawing.Point(3, 119);
-            this.buttonDelete.MinimumSize = new System.Drawing.Size(50, 0);
+            this.buttonDelete.Location = new System.Drawing.Point(3, 204);
+            this.buttonDelete.MinimumSize = new System.Drawing.Size(67, 0);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(50, 23);
-            this.buttonDelete.TabIndex = 4;
+            this.buttonDelete.Size = new System.Drawing.Size(67, 23);
+            this.buttonDelete.TabIndex = 7;
             this.buttonDelete.TabStop = true;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -213,6 +246,8 @@
         private System.Windows.Forms.Label labelCapacity;
         private System.Windows.Forms.NumericUpDown numCapacity;
         private System.Windows.Forms.RadioButton buttonMerger;
+        private System.Windows.Forms.RadioButton buttonSplitter;
+        private System.Windows.Forms.RadioButton buttonAdjSplitter;
         private System.Windows.Forms.RadioButton buttonDelete;
     }
 }

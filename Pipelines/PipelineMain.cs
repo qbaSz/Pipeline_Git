@@ -43,6 +43,10 @@ namespace Pipelines
             {
                 pg.Delete(new Point(e.X, e.Y));
             }
+            else if (buttonSplitter.Checked)
+            {
+                pg.AddSplitter(new Point(e.X, e.Y));
+            }
 
             pbPipeline.Invalidate();
         }

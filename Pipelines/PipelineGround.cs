@@ -94,6 +94,15 @@ namespace Pipelines
             }
         }
 
+        public void AddSplitter(Point pt)
+        {
+            if (CheckCollision(pt) == null)
+            {
+                Splitter tempSplitter = new Splitter(pt);
+                componentList.Add(tempSplitter);
+            }
+        }
+
         public Component CheckCollision(Point pt)
         {
             foreach (Component cmp in componentList)
