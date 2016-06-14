@@ -21,9 +21,7 @@ namespace Pipelines
         }
 
         public static int Size { get { return size; } }
-        public virtual void Draw(Graphics graphic) {
-            graphic.DrawRectangle(new Pen(Color.Black), pos.X, pos.Y, size, size);
-        }
+        public virtual void Draw(Graphics graphic) { }
         public virtual bool AddPipe(Pipe ppe, io IO) { return false; }
         public virtual void DeletePipe(Pipe ppe) { }
         public virtual void Delete(List<Pipe> pipeList) { }

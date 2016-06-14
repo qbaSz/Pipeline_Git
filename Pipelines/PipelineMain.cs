@@ -13,12 +13,12 @@ namespace Pipelines
     public partial class PipelineMain : Form
     {
         PipelineGround pg = new PipelineGround();
-
-
+        
         public PipelineMain()
         {
             InitializeComponent();
             NumInputsToggle(false, true, true);
+            pbPipeline.Invalidate();
         }
 
         private void pbPipeline_Paint(object sender, PaintEventArgs e)
@@ -61,7 +61,7 @@ namespace Pipelines
         {
             if (buttonPipe.Checked)
             {
-                pg.AddStartPipePt(new Point(e.X, e.Y));
+                pg.AddStartPipePt(new Point(e.X, e.Y), Convert.ToDouble(numCapacity.Value));
             }
         }
 
@@ -71,7 +71,7 @@ namespace Pipelines
             {
                 pg.AddEndPipePt(new Point(e.X, e.Y));
             }
-            pbPipeline.Invalidate();
+            pbPipeline.Refresh();
         }
 
         private void NumPercentageToggle(bool visible)

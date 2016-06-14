@@ -12,11 +12,7 @@ namespace Pipelines
         public AdjustableSplitter(Point pt, double percentage) : base(pt)
         {
             PercentOut1 = percentage;
-        }
-
-        public override void Draw(Graphics graphic)
-        {
-            graphic.FillEllipse(new SolidBrush(Color.Khaki), this.Pos.X, this.Pos.Y, Size, Size);
+            this.color = Color.Khaki;
         }
     }
 }

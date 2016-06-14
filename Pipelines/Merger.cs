@@ -23,7 +23,11 @@ namespace Pipelines
 
         public override void Draw(Graphics graphic)
         {
-            graphic.FillEllipse(new SolidBrush(Color.Green), this.Pos.X, this.Pos.Y, Size, Size);
+            graphic.FillRectangle(new SolidBrush(Color.Green), this.Pos.X, this.Pos.Y, Size, Size);
+            if ((inputPipe1 != null || inputPipe2 != null) && outputPipe == null)
+            {
+                graphic.DrawRectangle(new Pen(Color.Red, 3), this.Pos.X, this.Pos.Y, Size, Size);
+            }
         }
 
         public override bool AddPipe(Pipe ppe, io IO)

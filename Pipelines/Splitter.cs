@@ -41,6 +41,8 @@ namespace Pipelines
             set { percentOut1 = value; }
         }
 
+        protected Color color = Color.Cyan;
+
         public Splitter(Point pt)
         {
             this.Pos = pt;
@@ -49,7 +51,12 @@ namespace Pipelines
 
         public override void Draw(Graphics graphic)
         {
-            graphic.FillEllipse(new SolidBrush(Color.Cyan), this.Pos.X, this.Pos.Y, Size, Size);
+            graphic.FillRectangle(new SolidBrush(this.color), this.Pos.X, this.Pos.Y, Size, Size);
+            if (inputPipe != null && (outputPipe1 == null || outputPipe2 == null))
+            {
+                graphic.DrawRectangle(new Pen(Color.Red, 3), this.Pos.X, this.Pos.Y, Size, Size);
+
+            }
         }
 
         public override bool AddPipe(Pipe ppe, io IO)

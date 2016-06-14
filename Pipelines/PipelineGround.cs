@@ -29,11 +29,16 @@ namespace Pipelines
 
         public void AddPump(double currentFlow, double capacity, Point pt)
         {
-            if(CheckCollision(pt) == null) 
+            if (currentFlow > capacity)
+            {
+                MessageBox.Show("Current flow cannot exceed capacity of the pump.");
+            }
+            else if (CheckCollision(pt) == null)
             {
                 Pump tempPump = new Pump(currentFlow, capacity, pt);
-                componentList.Add(tempPump);   
+                componentList.Add(tempPump);
             }
+            
         }
 
         public void AddSink(Point pt, double capacity)
@@ -45,16 +50,15 @@ namespace Pipelines
             }
         }
 
-        public void AddStartPipePt(Point pt)
+        public void AddStartPipePt(Point pt, double capacity)
         {
             Component cmp = CheckCollision(pt);
             if (cmp != null)
             {
-                tempPipe = new Pipe();
+                tempPipe = new Pipe(capacity);
                 if (cmp.AddPipe(tempPipe, Component.io.output))
                 {
                     tempPipe.StartComponent = cmp;
-                    //tempPipe.Flow = tempPipe.StartComponent.GetOutput();
                 }
             }
         }
