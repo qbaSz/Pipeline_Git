@@ -16,7 +16,7 @@ namespace Pipelines
 
         public override void Draw(Graphics graphic)
         {
-            graphic.FillEllipse(new SolidBrush(Color.Khaki), this.Pos.X - this.Size / 2, this.Pos.Y - this.Size / 2, this.Size, this.Size);
+            graphic.FillEllipse(new SolidBrush(Color.Khaki), this.Pos.X, this.Pos.Y, Size, Size);
         }
     }
 }

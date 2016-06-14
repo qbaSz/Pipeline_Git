@@ -29,7 +29,6 @@ namespace Pipelines
 
         public void AddPump(double currentFlow, double capacity, Point pt)
         {
-
             if(CheckCollision(pt) == null) 
             {
                 Pump tempPump = new Pump(currentFlow, capacity, pt);
@@ -116,7 +115,19 @@ namespace Pipelines
         {
             foreach (Component cmp in componentList)
             {
-                if (Math.Abs(cmp.Pos.X - pt.X) < cmp.Size && Math.Abs(cmp.Pos.Y - pt.Y) < cmp.Size)
+                if (Math.Abs(cmp.Pos.X - pt.X) < Component.Size && Math.Abs(cmp.Pos.Y - pt.Y) < Component.Size)
+                {
+                    return cmp;
+                }
+            }
+            return null;
+        }
+
+        public Component FindComponent(Point pt)
+        {
+            foreach (Component cmp in componentList)
+            {
+                if (cmp.Contains(pt))
                 {
                     return cmp;
                 }
@@ -138,7 +149,7 @@ namespace Pipelines
 
         public void Delete(Point pt)
         {
-            Component cmp = CheckCollision(pt);
+            Component cmp = FindComponent(pt);
             Pipe ppe = CheckCollisionPipe(pt);
             if (cmp != null)
             {

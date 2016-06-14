@@ -9,7 +9,8 @@ namespace Pipelines
 {
     class Component
     {
-        private int size = 40;
+        private static int size = 40;
+        //top-left corner
         private Point pos;
         public enum io { input, output };
 
@@ -19,12 +20,23 @@ namespace Pipelines
             set { pos = value; }
         }
 
-        public int Size { get { return size; } }
-        public virtual void Draw(Graphics graphic) { }
+        public static int Size { get { return size; } }
+        public virtual void Draw(Graphics graphic) {
+            graphic.DrawRectangle(new Pen(Color.Black), pos.X, pos.Y, size, size);
+        }
         public virtual bool AddPipe(Pipe ppe, io IO) { return false; }
         public virtual void DeletePipe(Pipe ppe) { }
         public virtual void Delete(List<Pipe> pipeList) { }
         public virtual double GetOutput() { return 0; }
         public virtual double GetCapacity() { return 0; }
+
+        public bool Contains(Point pt)
+        {
+            if (pt == pos || ((pt.X > this.pos.X && pt.X < this.pos.X + size) && (pt.Y > this.pos.Y && pt.Y < this.pos.Y + size)))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

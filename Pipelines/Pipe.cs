@@ -45,10 +45,10 @@ namespace Pipelines
 
         public void Draw(Graphics graphic)
         {
-            graphic.DrawLine(new Pen(Overflow(), width), StartComponent.Pos, EndComponent.Pos);
+            graphic.DrawLine(new Pen(Overflow(), width), StartComponent.Pos.X + Component.Size / 2, StartComponent.Pos.Y + Component.Size / 2, EndComponent.Pos.X + Component.Size / 2, EndComponent.Pos.Y + Component.Size / 2);
             if (StartComponent.GetType() == typeof(Splitter) || StartComponent.GetType() == typeof(AdjustableSplitter))
 	        {
-                CalculateLineEquation();
+                CalculateLineEquation(new Point(StartComponent.Pos.X + Component.Size / 2, StartComponent.Pos.Y + Component.Size / 2), new Point(EndComponent.Pos.X + Component.Size / 2, EndComponent.Pos.Y + Component.Size / 2));
                 graphic.DrawString(this.label.ToString(), new Font("Arial", 12, FontStyle.Bold), Brushes.Black, (int)CalculateLabelX(), (int)(a * CalculateLabelX() + b));
 	        }
             
@@ -74,25 +74,27 @@ namespace Pipelines
 
         public bool Contains(Point pt)
         {
-            int top = Math.Min(StartComponent.Pos.Y, EndComponent.Pos.Y);
-            int bottom = Math.Max(StartComponent.Pos.Y, EndComponent.Pos.Y);
-            int left = Math.Min(StartComponent.Pos.X, EndComponent.Pos.X);
-            int right = Math.Max(StartComponent.Pos.X, EndComponent.Pos.X);
+            Point startPt = new Point(StartComponent.Pos.X + Component.Size / 2, StartComponent.Pos.Y + Component.Size / 2);
+            Point endPt = new Point(EndComponent.Pos.X + Component.Size / 2, EndComponent.Pos.Y + Component.Size / 2);
+            int top = Math.Min(startPt.Y, endPt.Y);
+            int bottom = Math.Max(startPt.Y, endPt.Y);
+            int left = Math.Min(startPt.X, endPt.X);
+            int right = Math.Max(startPt.X, endPt.X);
             Rectangle rect = Rectangle.FromLTRB(left, top, right, bottom);
             if (rect.Contains(pt))
             {
-                if (StartComponent.Pos.X == EndComponent.Pos.X)
+                if (startPt.X == endPt.X)
                 {
                     return true;
                 }
-                else if (StartComponent.Pos.Y == EndComponent.Pos.Y)
+                else if (startPt.Y == endPt.Y)
                 {
                     return true;
                 }
                 else
                 {
                     //y = ax + b
-                    CalculateLineEquation();
+                    CalculateLineEquation(startPt, endPt);
                     if (pt.Y > (a * pt.X + b - 4) && pt.Y < (a * pt.X + b + 4))
                     {
                         return true;
@@ -102,16 +104,18 @@ namespace Pipelines
             return false;
         }
 
-        private void CalculateLineEquation()
+        private void CalculateLineEquation(Point startPt, Point endPt)
         {
-            this.a = (double)(StartComponent.Pos.Y - EndComponent.Pos.Y) / (double)(StartComponent.Pos.X - EndComponent.Pos.X);
-            this.b = StartComponent.Pos.Y - a * StartComponent.Pos.X;
+            this.a = (double)(startPt.Y - endPt.Y) / (double)(startPt.X - endPt.X);
+            this.b = startPt.Y - a * startPt.X;
         }
 
         private double CalculateLabelX()
         {
-            double pipeLength = Math.Sqrt(Math.Pow(EndComponent.Pos.X - StartComponent.Pos.X, 2) + Math.Pow(EndComponent.Pos.Y - StartComponent.Pos.Y, 2));
-            return (labelDistance * (EndComponent.Pos.X - StartComponent.Pos.X))/(pipeLength) + StartComponent.Pos.X;
+            Point startPt = new Point(StartComponent.Pos.X + Component.Size / 2, StartComponent.Pos.Y + Component.Size / 2);
+            Point endPt = new Point(EndComponent.Pos.X + Component.Size / 2, EndComponent.Pos.Y + Component.Size / 2);
+            double pipeLength = Math.Sqrt(Math.Pow(endPt.X - startPt.X, 2) + Math.Pow(endPt.Y - startPt.Y, 2));
+            return (labelDistance * (endPt.X - startPt.X))/(pipeLength) + startPt.X;
         }
 
     }

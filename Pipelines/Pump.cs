@@ -33,8 +33,9 @@ namespace Pipelines
 
         public override void Draw(Graphics graphic)
         {
-            graphic.FillEllipse(new SolidBrush(Color.Gray), this.Pos.X - this.Size / 2, this.Pos.Y - this.Size / 2, this.Size, this.Size);
-            graphic.DrawString(this.CurrentFlow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, this.Pos.X - this.Size / 2, this.Pos.Y - 6);
+            //base.Draw(graphic);
+            graphic.FillEllipse(new SolidBrush(Color.Gray), this.Pos.X, this.Pos.Y, Size, Size);
+            graphic.DrawString(this.CurrentFlow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, this.Pos.X, this.Pos.Y + 10);
         }
 
         public override bool AddPipe(Pipe ppe, io IO)

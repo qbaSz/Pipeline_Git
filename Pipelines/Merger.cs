@@ -23,7 +23,7 @@ namespace Pipelines
 
         public override void Draw(Graphics graphic)
         {
-            graphic.FillEllipse(new SolidBrush(Color.Green), this.Pos.X - this.Size / 2, this.Pos.Y - this.Size / 2, this.Size, this.Size);
+            graphic.FillEllipse(new SolidBrush(Color.Green), this.Pos.X, this.Pos.Y, Size, Size);
         }
 
         public override bool AddPipe(Pipe ppe, io IO)

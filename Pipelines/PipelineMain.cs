@@ -28,17 +28,18 @@ namespace Pipelines
 
         private void pbPipeline_MouseClick(object sender, MouseEventArgs e)
         {
+            Point pt = new Point(e.X - Component.Size / 2, e.Y - Component.Size / 2);
             if (buttonPump.Checked)
             {
-                pg.AddPump(Convert.ToDouble(numCurrentFlow.Value), Convert.ToDouble(numCapacity.Value), new Point(e.X, e.Y));
+                pg.AddPump(Convert.ToDouble(numCurrentFlow.Value), Convert.ToDouble(numCapacity.Value), pt);
             }
             else if (buttonSink.Checked)
             {
-                pg.AddSink(new Point(e.X, e.Y), Convert.ToDouble(numCapacity.Value));
+                pg.AddSink(pt, Convert.ToDouble(numCapacity.Value));
             }
             else if (buttonMerger.Checked)
             {
-                pg.AddMerger(new Point(e.X, e.Y));
+                pg.AddMerger(pt);
             }
             else if (buttonDelete.Checked)
             {
@@ -46,11 +47,11 @@ namespace Pipelines
             }
             else if (buttonSplitter.Checked)
             {
-                pg.AddSplitter(new Point(e.X, e.Y));
+                pg.AddSplitter(pt);
             }
             else if (buttonAdjSplitter.Checked)
             {
-                pg.AddAdjustableSplitter(new Point(e.X, e.Y), Convert.ToDouble(numPercentage.Value / 100));
+                pg.AddAdjustableSplitter(pt, Convert.ToDouble(numPercentage.Value / 100));
             }
 
             pbPipeline.Invalidate();
