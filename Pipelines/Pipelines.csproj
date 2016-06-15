@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AdjustableSplitter.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="ComponentEventArgs.cs" />
     <Compile Include="Merger.cs" />
     <Compile Include="Pipe.cs" />
     <Compile Include="PipelineGround.cs" />

@@ -42,14 +42,7 @@ namespace Pipelines
             if (IO == io.output && this.outputPipe == null)
             {
                 this.outputPipe = ppe;
-                if (inputPipe1 != null)
-                {
-                    this.outputPipe.Flow += inputPipe1.Flow;
-                }
-                if (inputPipe2 != null)
-                {
-                    this.outputPipe.Flow += inputPipe2.Flow;
-                }
+                UpdateOutput();
                 return true;
             }
             else if (IO == io.input)
@@ -57,27 +50,13 @@ namespace Pipelines
                 if (inputPipe1 == null)
                 {
                     this.inputPipe1 = ppe;
-                    if(this.outputPipe != null)
-                    {
-                        this.outputPipe.Flow = this.inputPipe1.Flow;
-                        if (inputPipe2 != null)
-                        {
-                            this.outputPipe.Flow += this.inputPipe2.Flow;
-                        }
-                    }
+                    UpdateOutput();
                     return true;
                 }
                 else if (inputPipe2 == null)
                 {
                     this.inputPipe2 = ppe;
-                    if (this.outputPipe != null)
-                    {
-                        this.outputPipe.Flow = inputPipe2.Flow;
-                        if (this.inputPipe1 != null)
-                        {
-                            this.outputPipe.Flow += inputPipe1.Flow;
-                        } 
-                    }
+                    UpdateOutput();
                     return true;
                 }
             }
@@ -98,6 +77,7 @@ namespace Pipelines
             {
                 outputPipe = null;
             }
+            UpdateOutput();
         }
 
         public override void Delete(List<Pipe> pipeList)
@@ -121,6 +101,29 @@ namespace Pipelines
                 pipeList.Remove(outputPipe);
                 outputPipe = null;
             }
+        }
+
+        public override void UpdateOutput()
+        {
+            base.UpdateOutput();
+            if (outputPipe != null)
+            {
+                outputPipe.Flow = 0;
+                if (inputPipe1 != null)
+                {
+                    this.outputPipe.Flow += inputPipe1.Flow;
+                }
+                if (inputPipe2 != null)
+                {
+                    this.outputPipe.Flow += inputPipe2.Flow;
+                }
+                OnOutputChanged(outputPipe);
+            }
+        }
+
+        public override void OnOutputChanged(object sender, ComponentEventArgs args)
+        {
+            args.Pipe.EndComponent.UpdateOutput();
         }
     }
 }

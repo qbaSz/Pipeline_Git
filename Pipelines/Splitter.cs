@@ -142,5 +142,31 @@ namespace Pipelines
                 inputPipe = null;
             }
         }
+
+        public override void UpdateOutput()
+        {
+            base.UpdateOutput();
+            if (outputPipe1 != null)
+            {
+                if (inputPipe != null)
+                    outputPipe1.Flow = inputPipe.Flow * percentOut1;
+                else
+                    outputPipe1.Flow = 0;
+                OnOutputChanged(outputPipe1);
+            }
+            if (outputPipe2 != null)
+            {
+                if (inputPipe != null)
+                    outputPipe2.Flow = inputPipe.Flow * (1 - percentOut1);
+                else
+                    outputPipe2.Flow = 0;
+                OnOutputChanged(outputPipe2);
+            }
+        }
+
+        public override void OnOutputChanged(object sender, ComponentEventArgs args)
+        {
+            args.Pipe.EndComponent.UpdateOutput();
+        }
     }
 }

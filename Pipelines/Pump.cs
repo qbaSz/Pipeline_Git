@@ -72,5 +72,10 @@ namespace Pipelines
                 outputPipe = null;
             }
         }
+
+        public override void OnOutputChanged(object sender, ComponentEventArgs args)
+        {
+            args.Pipe.EndComponent.UpdateOutput();
+        }
     }
 }

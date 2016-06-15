@@ -74,6 +74,7 @@ namespace Pipelines
                     {
                         tempPipe.EndComponent = cmp;
                         pipeList.Add(tempPipe);
+                        tempPipe.StartComponent.OutputChanged += tempPipe.EndComponent.OnOutputChanged;
                         tempPipe = null;
                     }
                     else

@@ -77,5 +77,10 @@ namespace Pipelines
         {
             return this.capacity;
         }
+
+        public override void UpdateOutput()
+        {
+            base.UpdateOutput();
+        }
     }
 }
