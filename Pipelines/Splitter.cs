@@ -57,6 +57,11 @@ namespace Pipelines
                 graphic.DrawRectangle(new Pen(Color.Red, 3), this.Pos.X, this.Pos.Y, Size, Size);
 
             }
+            if (inputPipe != null)
+            {
+                graphic.DrawString(this.inputPipe.Flow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, this.Pos.X, this.Pos.Y + 10);
+            }
+            
         }
 
         public override bool AddPipe(Pipe ppe, io IO)
@@ -137,15 +142,5 @@ namespace Pipelines
                 inputPipe = null;
             }
         }
-
-        public override double GetOutput()
-        {
-            if (inputPipe != null)
-            {
-                return inputPipe.Flow * this.percentOut1;
-            }
-            return 0;
-        }
-
     }
 }

@@ -52,7 +52,7 @@ namespace Pipelines
 
         public void AddStartPipePt(Point pt, double capacity)
         {
-            Component cmp = CheckCollision(pt);
+            Component cmp = FindComponent(pt);
             if (cmp != null)
             {
                 tempPipe = new Pipe(capacity);
@@ -65,15 +65,16 @@ namespace Pipelines
 
         public void AddEndPipePt(Point pt)
         {
-            Component cmp = CheckCollision(pt);
-            try
+            Component cmp = FindComponent(pt);
+            if(tempPipe != null)
             {
-                if (tempPipe.StartComponent != null && cmp != null)
+                if (tempPipe.StartComponent != null && cmp != null && cmp != tempPipe.StartComponent)
                 {
                     if (cmp.AddPipe(tempPipe, Component.io.input))
                     {
                         tempPipe.EndComponent = cmp;
                         pipeList.Add(tempPipe);
+                        tempPipe = null;
                     }
                     else
                     {
@@ -81,11 +82,15 @@ namespace Pipelines
                     }
 
                 }
+                else if ((tempPipe.StartComponent != null && cmp == null) || (tempPipe.StartComponent != null && cmp == tempPipe.StartComponent))
+                {
+                    tempPipe.StartComponent.DeletePipe(tempPipe);
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Please draw pump or sink first");
-            }
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Please draw pump or sink first");
+            //}
         }
 
         public void AddMerger(Point pt)

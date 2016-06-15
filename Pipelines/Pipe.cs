@@ -55,7 +55,7 @@ namespace Pipelines
             graphic.DrawLine(new Pen(Overflow(), width), StartComponent.Pos.X + Component.Size / 2, StartComponent.Pos.Y + Component.Size / 2, EndComponent.Pos.X + Component.Size / 2, EndComponent.Pos.Y + Component.Size / 2);
             if (StartComponent.GetType() == typeof(Splitter) || StartComponent.GetType() == typeof(AdjustableSplitter))
 	        {
-                graphic.DrawString(this.label.ToString(), new Font("Arial", 12, FontStyle.Bold), Brushes.Black, (int)CalculateLabelX(labelDistance), (int)(a * CalculateLabelX(labelDistance) + b));
+                graphic.DrawString(this.label.ToString() + " = " + this.flow.ToString(), new Font("Arial", 10, FontStyle.Bold), Brushes.Black, (int)CalculateLabelX(labelDistance), (int)(a * CalculateLabelX(labelDistance) + b));
 	        }
             graphic.DrawString("Cap: " + this.capacity.ToString(), new Font("Arial", 9, FontStyle.Bold), Brushes.Brown, (int)CalculateLabelX((int)pipeLength/2), (int)(a * CalculateLabelX((int)pipeLength/2) + b));
         }

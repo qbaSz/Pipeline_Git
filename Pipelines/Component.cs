@@ -25,7 +25,7 @@ namespace Pipelines
         public virtual bool AddPipe(Pipe ppe, io IO) { return false; }
         public virtual void DeletePipe(Pipe ppe) { }
         public virtual void Delete(List<Pipe> pipeList) { }
-        public virtual double GetOutput() { return 0; }
+        public virtual double PropagateOutput(Pipe ppe) { return 0; }
         public virtual double GetCapacity() { return 0; }
 
         public bool Contains(Point pt)

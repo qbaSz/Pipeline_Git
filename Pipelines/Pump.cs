@@ -63,11 +63,6 @@ namespace Pipelines
             }
         }
 
-        public override double GetOutput()
-        {
-            return this.currentFlow;
-        }
-
         public override void Delete(List<Pipe> pipeList)
         {
             if (outputPipe != null)
