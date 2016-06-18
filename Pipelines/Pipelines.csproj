@@ -46,6 +46,12 @@
     <Compile Include="AdjustableSplitter.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="ComponentEventArgs.cs" />
+    <Compile Include="ComponentPropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComponentPropertiesForm.Designer.cs">
+      <DependentUpon>ComponentPropertiesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Merger.cs" />
     <Compile Include="Pipe.cs" />
     <Compile Include="PipelineGround.cs" />
@@ -60,6 +66,9 @@
     <Compile Include="Pump.cs" />
     <Compile Include="Sink.cs" />
     <Compile Include="Splitter.cs" />
+    <EmbeddedResource Include="ComponentPropertiesForm.resx">
+      <DependentUpon>ComponentPropertiesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PipelineMain.resx">
       <DependentUpon>PipelineMain.cs</DependentUpon>
     </EmbeddedResource>

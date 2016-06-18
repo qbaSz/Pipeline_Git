@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace Pipelines
 {
@@ -14,6 +10,12 @@ namespace Pipelines
         List<Component> componentList = new List<Component>();
         List<Pipe> pipeList = new List<Pipe>();
         Pipe tempPipe = null;
+        private ComponentPropertiesForm propertiesForm;
+
+        public PipelineGround()
+        {
+            propertiesForm = new ComponentPropertiesForm();
+        }
 
         public void Paint(Graphics graphic)
         {
@@ -80,6 +82,7 @@ namespace Pipelines
                     else
                     {
                         tempPipe.StartComponent.DeletePipe(tempPipe);
+                        tempPipe = null;
                     }
 
                 }
@@ -170,6 +173,41 @@ namespace Pipelines
             {
                 ppe.Delete();
                 pipeList.Remove(ppe);
+            }
+        }
+
+        public void EditComponent(Point pt)
+        {
+            Component cmp = FindComponent(pt);
+            Pipe ppe = CheckCollisionPipe(pt);
+            this.propertiesForm.SetComponent(cmp);
+            if (cmp != null)
+            {
+                if (cmp.GetType() == typeof(Pump))
+                {
+                    this.propertiesForm.NumInputsToggle(false, true, true);
+                    this.propertiesForm.SetValues(0, (double)cmp.GetType().GetProperty("CurrentFlow").GetValue(cmp), (double)cmp.GetType().GetProperty("Capacity").GetValue(cmp));
+                    this.propertiesForm.ShowDialog();
+                }
+                else if (cmp.GetType() == typeof(AdjustableSplitter))
+                {
+                    this.propertiesForm.NumInputsToggle(true, false, false);
+                    this.propertiesForm.SetValues(100 * (double)typeof(AdjustableSplitter).GetProperty("PercentOut1").GetValue(cmp), 0, 0);
+                    this.propertiesForm.ShowDialog();
+                }
+                else if (cmp.GetType() == typeof(Sink))
+                {
+                    this.propertiesForm.NumInputsToggle(false, false, true);
+                    this.propertiesForm.SetValues(0, 0, (double)cmp.GetType().GetProperty("Capacity").GetValue(cmp));
+                    this.propertiesForm.ShowDialog();
+                }
+                this.propertiesForm.SetPipe(null);
+            }else if(ppe != null)
+            {
+                this.propertiesForm.SetPipe(ppe);
+                this.propertiesForm.NumInputsToggle(false, false, true);
+                this.propertiesForm.SetValues(0, 0, (double)ppe.Capacity);
+                this.propertiesForm.ShowDialog();
             }
         }
     }

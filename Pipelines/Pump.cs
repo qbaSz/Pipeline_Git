@@ -59,6 +59,8 @@ namespace Pipelines
         {
             if (this.outputPipe == ppe)
             {
+                outputPipe.Flow = 0;
+                UpdateOutput();
                 this.outputPipe = null;
             }
         }
@@ -67,6 +69,8 @@ namespace Pipelines
         {
             if (outputPipe != null)
             {
+                outputPipe.Flow = 0;
+                UpdateOutput();
                 outputPipe.EndComponent.DeletePipe(outputPipe);
                 pipeList.Remove(outputPipe);
                 outputPipe = null;
@@ -76,6 +80,16 @@ namespace Pipelines
         public override void OnOutputChanged(object sender, ComponentEventArgs args)
         {
             args.Pipe.EndComponent.UpdateOutput();
+        }
+
+        public override void UpdateOutput()
+        {
+            base.UpdateOutput();
+            if (outputPipe != null)
+            {
+                outputPipe.Flow = currentFlow;
+                OnOutputChanged(outputPipe);
+            }
         }
     }
 }

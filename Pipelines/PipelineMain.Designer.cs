@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonDelete = new System.Windows.Forms.RadioButton();
-            this.numCurrentFlow = new System.Windows.Forms.NumericUpDown();
-            this.labelCurrentFlow = new System.Windows.Forms.Label();
-            this.labelCapacity = new System.Windows.Forms.Label();
-            this.numCapacity = new System.Windows.Forms.NumericUpDown();
-            this.numPercentage = new System.Windows.Forms.NumericUpDown();
-            this.labelPercentage = new System.Windows.Forms.Label();
             this.buttonPump = new System.Windows.Forms.RadioButton();
             this.buttonSink = new System.Windows.Forms.RadioButton();
             this.buttonPipe = new System.Windows.Forms.RadioButton();
             this.buttonMerger = new System.Windows.Forms.RadioButton();
             this.buttonSplitter = new System.Windows.Forms.RadioButton();
             this.buttonAdjSplitter = new System.Windows.Forms.RadioButton();
+            this.buttonDelete = new System.Windows.Forms.RadioButton();
+            this.buttonEdit = new System.Windows.Forms.RadioButton();
+            this.numCurrentFlow = new System.Windows.Forms.NumericUpDown();
+            this.labelCurrentFlow = new System.Windows.Forms.Label();
+            this.labelCapacity = new System.Windows.Forms.Label();
+            this.numCapacity = new System.Windows.Forms.NumericUpDown();
+            this.numPercentage = new System.Windows.Forms.NumericUpDown();
+            this.labelPercentage = new System.Windows.Forms.Label();
             this.pbPipeline = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCurrentFlow)).BeginInit();
@@ -59,75 +60,11 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonSplitter);
             this.flowLayoutPanel1.Controls.Add(this.buttonAdjSplitter);
             this.flowLayoutPanel1.Controls.Add(this.buttonDelete);
+            this.flowLayoutPanel1.Controls.Add(this.buttonEdit);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 13);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(72, 447);
             this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Appearance = System.Windows.Forms.Appearance.Button;
-            this.buttonDelete.AutoSize = true;
-            this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonDelete.Location = new System.Drawing.Point(3, 352);
-            this.buttonDelete.MinimumSize = new System.Drawing.Size(67, 0);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(67, 23);
-            this.buttonDelete.TabIndex = 7;
-            this.buttonDelete.TabStop = true;
-            this.buttonDelete.Text = "Delete";
-            this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.buttonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDelete_MouseClick);
-            // 
-            // numCurrentFlow
-            // 
-            this.numCurrentFlow.Location = new System.Drawing.Point(12, 518);
-            this.numCurrentFlow.Name = "numCurrentFlow";
-            this.numCurrentFlow.Size = new System.Drawing.Size(62, 20);
-            this.numCurrentFlow.TabIndex = 2;
-            // 
-            // labelCurrentFlow
-            // 
-            this.labelCurrentFlow.AutoSize = true;
-            this.labelCurrentFlow.Location = new System.Drawing.Point(10, 502);
-            this.labelCurrentFlow.Name = "labelCurrentFlow";
-            this.labelCurrentFlow.Size = new System.Drawing.Size(66, 13);
-            this.labelCurrentFlow.TabIndex = 3;
-            this.labelCurrentFlow.Text = "Current Flow";
-            // 
-            // labelCapacity
-            // 
-            this.labelCapacity.AutoSize = true;
-            this.labelCapacity.Location = new System.Drawing.Point(10, 541);
-            this.labelCapacity.Name = "labelCapacity";
-            this.labelCapacity.Size = new System.Drawing.Size(48, 13);
-            this.labelCapacity.TabIndex = 4;
-            this.labelCapacity.Text = "Capacity";
-            // 
-            // numCapacity
-            // 
-            this.numCapacity.Location = new System.Drawing.Point(12, 557);
-            this.numCapacity.Name = "numCapacity";
-            this.numCapacity.Size = new System.Drawing.Size(62, 20);
-            this.numCapacity.TabIndex = 5;
-            // 
-            // numPercentage
-            // 
-            this.numPercentage.Location = new System.Drawing.Point(12, 479);
-            this.numPercentage.Name = "numPercentage";
-            this.numPercentage.Size = new System.Drawing.Size(62, 20);
-            this.numPercentage.TabIndex = 6;
-            // 
-            // labelPercentage
-            // 
-            this.labelPercentage.AutoSize = true;
-            this.labelPercentage.Location = new System.Drawing.Point(9, 463);
-            this.labelPercentage.Name = "labelPercentage";
-            this.labelPercentage.Size = new System.Drawing.Size(65, 13);
-            this.labelPercentage.TabIndex = 7;
-            this.labelPercentage.Text = "Perc. pipe A";
             // 
             // buttonPump
             // 
@@ -236,6 +173,88 @@
             this.buttonAdjSplitter.UseVisualStyleBackColor = true;
             this.buttonAdjSplitter.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonAdjSplitter_MouseClick);
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Appearance = System.Windows.Forms.Appearance.Button;
+            this.buttonDelete.AutoSize = true;
+            this.buttonDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonDelete.Location = new System.Drawing.Point(3, 352);
+            this.buttonDelete.MinimumSize = new System.Drawing.Size(67, 0);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(67, 23);
+            this.buttonDelete.TabIndex = 7;
+            this.buttonDelete.TabStop = true;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDelete_MouseClick);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Appearance = System.Windows.Forms.Appearance.Button;
+            this.buttonEdit.AutoSize = true;
+            this.buttonEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonEdit.Location = new System.Drawing.Point(3, 381);
+            this.buttonEdit.MinimumSize = new System.Drawing.Size(67, 0);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(67, 23);
+            this.buttonEdit.TabIndex = 8;
+            this.buttonEdit.TabStop = true;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonEdit_MouseClick);
+            // 
+            // numCurrentFlow
+            // 
+            this.numCurrentFlow.Location = new System.Drawing.Point(12, 518);
+            this.numCurrentFlow.Name = "numCurrentFlow";
+            this.numCurrentFlow.Size = new System.Drawing.Size(62, 20);
+            this.numCurrentFlow.TabIndex = 2;
+            // 
+            // labelCurrentFlow
+            // 
+            this.labelCurrentFlow.AutoSize = true;
+            this.labelCurrentFlow.Location = new System.Drawing.Point(10, 502);
+            this.labelCurrentFlow.Name = "labelCurrentFlow";
+            this.labelCurrentFlow.Size = new System.Drawing.Size(66, 13);
+            this.labelCurrentFlow.TabIndex = 3;
+            this.labelCurrentFlow.Text = "Current Flow";
+            // 
+            // labelCapacity
+            // 
+            this.labelCapacity.AutoSize = true;
+            this.labelCapacity.Location = new System.Drawing.Point(10, 541);
+            this.labelCapacity.Name = "labelCapacity";
+            this.labelCapacity.Size = new System.Drawing.Size(48, 13);
+            this.labelCapacity.TabIndex = 4;
+            this.labelCapacity.Text = "Capacity";
+            // 
+            // numCapacity
+            // 
+            this.numCapacity.Location = new System.Drawing.Point(12, 557);
+            this.numCapacity.Name = "numCapacity";
+            this.numCapacity.Size = new System.Drawing.Size(62, 20);
+            this.numCapacity.TabIndex = 5;
+            // 
+            // numPercentage
+            // 
+            this.numPercentage.Location = new System.Drawing.Point(12, 479);
+            this.numPercentage.Name = "numPercentage";
+            this.numPercentage.Size = new System.Drawing.Size(62, 20);
+            this.numPercentage.TabIndex = 6;
+            // 
+            // labelPercentage
+            // 
+            this.labelPercentage.AutoSize = true;
+            this.labelPercentage.Location = new System.Drawing.Point(9, 463);
+            this.labelPercentage.Name = "labelPercentage";
+            this.labelPercentage.Size = new System.Drawing.Size(65, 13);
+            this.labelPercentage.TabIndex = 7;
+            this.labelPercentage.Text = "Perc. pipe A";
+            // 
             // pbPipeline
             // 
             this.pbPipeline.BackColor = System.Drawing.Color.White;
@@ -294,6 +313,7 @@
         private System.Windows.Forms.RadioButton buttonDelete;
         private System.Windows.Forms.NumericUpDown numPercentage;
         private System.Windows.Forms.Label labelPercentage;
+        private System.Windows.Forms.RadioButton buttonEdit;
     }
 }
 

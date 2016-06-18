@@ -52,6 +52,9 @@ namespace Pipelines
             else if (buttonAdjSplitter.Checked)
             {
                 pg.AddAdjustableSplitter(pt, Convert.ToDouble(numPercentage.Value / 100));
+            }else if (buttonEdit.Checked)
+            {
+                pg.EditComponent(new Point(e.X, e.Y));
             }
 
             pbPipeline.Invalidate();
@@ -134,6 +137,9 @@ namespace Pipelines
             NumInputsToggle(false, false, false);
         }
 
-
+        private void buttonEdit_MouseClick(object sender, MouseEventArgs e)
+        {
+            NumInputsToggle(false, false, false);
+        }
     }
 }

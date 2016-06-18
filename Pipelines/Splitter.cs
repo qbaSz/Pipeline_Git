@@ -55,13 +55,12 @@ namespace Pipelines
             if (inputPipe != null && (outputPipe1 == null || outputPipe2 == null))
             {
                 graphic.DrawRectangle(new Pen(Color.Red, 3), this.Pos.X, this.Pos.Y, Size, Size);
-
             }
             if (inputPipe != null)
             {
                 graphic.DrawString(this.inputPipe.Flow.ToString(), new Font("Arial", 12, FontStyle.Regular), Brushes.Blue, this.Pos.X, this.Pos.Y + 10);
             }
-            
+            graphic.DrawString("A:" + (this.percentOut1 * 100).ToString() + "%", new Font("Arial", 10, FontStyle.Regular), Brushes.Blue, Pos.X, Pos.Y + Size);
         }
 
         public override bool AddPipe(Pipe ppe, io IO)
@@ -118,11 +117,19 @@ namespace Pipelines
             else if (inputPipe == ppe)
             {
                 inputPipe = null;
+                UpdateOutput();
             }
         }
 
         public override void Delete(List<Pipe> pipeList)
         {
+            if (inputPipe != null)
+            {
+                inputPipe.StartComponent.DeletePipe(inputPipe);
+                pipeList.Remove(inputPipe);
+                inputPipe = null;
+                UpdateOutput();
+            }
             if (outputPipe1 != null)
             {
                 outputPipe1.EndComponent.DeletePipe(outputPipe1);
@@ -134,12 +141,6 @@ namespace Pipelines
                 outputPipe2.EndComponent.DeletePipe(outputPipe2);
                 pipeList.Remove(outputPipe2);
                 outputPipe2 = null;
-            }
-            if (inputPipe != null)
-            {
-                inputPipe.StartComponent.DeletePipe(inputPipe);
-                pipeList.Remove(inputPipe);
-                inputPipe = null;
             }
         }
 
@@ -166,7 +167,10 @@ namespace Pipelines
 
         public override void OnOutputChanged(object sender, ComponentEventArgs args)
         {
-            args.Pipe.EndComponent.UpdateOutput();
+            if (args.Pipe.EndComponent != null)
+            {
+               args.Pipe.EndComponent.UpdateOutput();
+            }
         }
     }
 }

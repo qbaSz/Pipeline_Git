@@ -14,6 +14,8 @@ namespace Pipelines
         private Pipe inputPipe;
         private double capacity = 0;
 
+        public double Capacity { get { return capacity; } set { capacity = value; } }
+
         public double Input
         { 
             get
