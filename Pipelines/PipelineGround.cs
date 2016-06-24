@@ -23,6 +23,8 @@ namespace Pipelines
             {
                 pi.Draw(graphic);
             }
+            if(tempPipe != null)
+                tempPipe.Draw(graphic);
             foreach (Component cmp in componentList)
             {
                 cmp.Draw(graphic);
@@ -58,9 +60,15 @@ namespace Pipelines
             if (cmp != null)
             {
                 tempPipe = new Pipe(capacity);
+                tempPipe.AddAnchorPoint(pt);
                 if (cmp.AddPipe(tempPipe, Component.io.output))
                 {
                     tempPipe.StartComponent = cmp;
+                    Console.WriteLine("Start component added");
+                }
+                else
+                {
+                    tempPipe = null;
                 }
             }
         }
@@ -68,33 +76,75 @@ namespace Pipelines
         public void AddEndPipePt(Point pt)
         {
             Component cmp = FindComponent(pt);
-            if(tempPipe != null)
-            {
-                if (tempPipe.StartComponent != null && cmp != null && cmp != tempPipe.StartComponent)
-                {
-                    if (cmp.AddPipe(tempPipe, Component.io.input))
-                    {
-                        tempPipe.EndComponent = cmp;
-                        pipeList.Add(tempPipe);
-                        tempPipe.StartComponent.OutputChanged += tempPipe.EndComponent.OnOutputChanged;
-                        tempPipe = null;
-                    }
-                    else
-                    {
-                        tempPipe.StartComponent.DeletePipe(tempPipe);
-                        tempPipe = null;
-                    }
+            //if(tempPipe != null)
+            //{
+            //    if (tempPipe.StartComponent != null && cmp != null && cmp != tempPipe.StartComponent)
+            //    {
+            //        if (cmp.AddPipe(tempPipe, Component.io.input))
+            //        {
+            //            tempPipe.EndComponent = cmp;
+            //            pipeList.Add(tempPipe);
+            //            tempPipe.AddAnchorPoint(pt);
+            //            tempPipe.StartComponent.OutputChanged += tempPipe.EndComponent.OnOutputChanged;
+            //            tempPipe = null;
+            //        }
+            //        else
+            //        {
+            //            tempPipe.StartComponent.DeletePipe(tempPipe);
+            //            tempPipe = null;
+            //        }
 
+            //    }
+            //    else if ((tempPipe.StartComponent != null && cmp == null) || (tempPipe.StartComponent != null && cmp == tempPipe.StartComponent))
+            //    {
+            //        tempPipe.StartComponent.DeletePipe(tempPipe);
+            //        tempPipe = null;
+            //    }
+            //}
+            if (cmp == tempPipe.StartComponent)
+            {
+                tempPipe.StartComponent.DeletePipe(tempPipe);
+                tempPipe = null;
+            }else
+            {
+                if (cmp.AddPipe(tempPipe, Component.io.input))
+                {
+                    tempPipe.EndComponent = cmp;
+                    tempPipe.AddAnchorPoint(pt);
+                    pipeList.Add(tempPipe);
+                    tempPipe.StartComponent.OutputChanged += tempPipe.EndComponent.OnOutputChanged;
+                    tempPipe = null;
                 }
-                else if ((tempPipe.StartComponent != null && cmp == null) || (tempPipe.StartComponent != null && cmp == tempPipe.StartComponent))
+                else
                 {
                     tempPipe.StartComponent.DeletePipe(tempPipe);
+                    tempPipe = null;
                 }
             }
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Please draw pump or sink first");
-            //}
+        }
+
+        public void AddPipesAnchorPoint(Point pt)
+        {
+            if(tempPipe != null)
+            {
+                tempPipe.AddAnchorPoint(pt);
+            }
+        }
+
+        public void AddPipe(Point pt, double capacity)
+        {
+            if (tempPipe == null)
+            {
+                AddStartPipePt(pt, capacity);
+            }
+            else if (tempPipe != null && FindComponent(pt) == null)
+            {
+                AddPipesAnchorPoint(pt);
+            }
+            else if (tempPipe != null && FindComponent(pt) != null)
+            {
+                AddEndPipePt(pt);
+            }
         }
 
         public void AddMerger(Point pt)
@@ -208,6 +258,15 @@ namespace Pipelines
                 this.propertiesForm.NumInputsToggle(false, false, true);
                 this.propertiesForm.SetValues(0, 0, (double)ppe.Capacity);
                 this.propertiesForm.ShowDialog();
+            }
+        }
+
+        public void ClearTempPipe()
+        {
+            if (tempPipe != null)
+            {
+                tempPipe.StartComponent.DeletePipe(tempPipe);
+                tempPipe = null;
             }
         }
     }

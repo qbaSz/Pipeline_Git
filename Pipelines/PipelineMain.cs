@@ -56,10 +56,14 @@ namespace Pipelines
             {
                 pg.EditComponent(new Point(e.X, e.Y));
             }
+            else if (buttonPipe.Checked)
+            {
+                pg.AddPipe(new Point(e.X, e.Y), (double)numCapacity.Value);
+            }
 
             pbPipeline.Invalidate();
         }
-
+        /*
         private void pbPipeline_MouseDown(object sender, MouseEventArgs e)
         {
             if (buttonPipe.Checked)
@@ -76,7 +80,7 @@ namespace Pipelines
             }
             pbPipeline.Refresh();
         }
-
+        */
         private void NumPercentageToggle(bool visible)
         {
             labelPercentage.Visible = visible;
@@ -115,6 +119,8 @@ namespace Pipelines
         private void buttonPipe_MouseClick(object sender, MouseEventArgs e)
         {
             NumInputsToggle(false, false, true);
+            pg.ClearTempPipe();
+            pbPipeline.Invalidate();
         }
 
         private void buttonMerger_MouseClick(object sender, MouseEventArgs e)
@@ -140,6 +146,12 @@ namespace Pipelines
         private void buttonEdit_MouseClick(object sender, MouseEventArgs e)
         {
             NumInputsToggle(false, false, false);
+        }
+
+        private void buttonPipe_CheckedChanged(object sender, EventArgs e)
+        {
+            pg.ClearTempPipe();
+            pbPipeline.Invalidate();
         }
     }
 }

@@ -118,6 +118,7 @@
             this.buttonPipe.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonPipe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.buttonPipe.UseVisualStyleBackColor = true;
+            this.buttonPipe.CheckedChanged += new System.EventHandler(this.buttonPipe_CheckedChanged);
             this.buttonPipe.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonPipe_MouseClick);
             // 
             // buttonMerger
@@ -265,8 +266,6 @@
             this.pbPipeline.TabStop = false;
             this.pbPipeline.Paint += new System.Windows.Forms.PaintEventHandler(this.pbPipeline_Paint);
             this.pbPipeline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbPipeline_MouseClick);
-            this.pbPipeline.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPipeline_MouseDown);
-            this.pbPipeline.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPipeline_MouseUp);
             // 
             // PipelineMain
             // 
