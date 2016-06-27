@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace Pipelines
 {
+    [Serializable]
     class Splitter : Component
     {
         private Pipe outputPipe1;

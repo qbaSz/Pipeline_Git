@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pipelines
 {
+    [Serializable]
     class Pump : Component
     {
         private double capacity;

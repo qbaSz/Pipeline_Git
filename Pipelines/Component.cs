@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pipelines
 {
+    [Serializable]
     class Component
     {
         private static int size = 40;

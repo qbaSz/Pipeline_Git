@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace Pipelines
 {
+    [Serializable]
     class AdjustableSplitter : Splitter
     {
         public AdjustableSplitter(Point pt, double percentage) : base(pt)

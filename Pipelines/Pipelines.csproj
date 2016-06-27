@@ -52,6 +52,13 @@
     <Compile Include="ComponentPropertiesForm.Designer.cs">
       <DependentUpon>ComponentPropertiesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileHelper.cs" />
+    <Compile Include="Manual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manual.Designer.cs">
+      <DependentUpon>Manual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Merger.cs" />
     <Compile Include="Pipe.cs" />
     <Compile Include="PipelineGround.cs" />
@@ -68,6 +75,9 @@
     <Compile Include="Splitter.cs" />
     <EmbeddedResource Include="ComponentPropertiesForm.resx">
       <DependentUpon>ComponentPropertiesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manual.resx">
+      <DependentUpon>Manual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PipelineMain.resx">
       <DependentUpon>PipelineMain.cs</DependentUpon>
