@@ -32,21 +32,21 @@ namespace Pipelines
         /// </summary>
         /// <returns></returns>
 
-        public List<string> GettingManual()
-        {
-            FileStream fs = new FileStream("Manual.txt", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-            List<string> manual = new List<string>();
-            string s = sr.ReadLine();
-            while (s != null)
-            {
-                manual.Add(s);
-                s = sr.ReadLine();
-            }
-            sr.Dispose();
-            fs.Dispose();
-            return manual;
-        }
+        //public List<string> GettingManual()
+        //{
+        //    FileStream fs = new FileStream("Manual.txt", FileMode.Open, FileAccess.Read);
+        //    StreamReader sr = new StreamReader(fs);
+        //    List<string> manual = new List<string>();
+        //    string s = sr.ReadLine();
+        //    while (s != null)
+        //    {
+        //        manual.Add(s);
+        //        s = sr.ReadLine();
+        //    }
+        //    sr.Dispose();
+        //    fs.Dispose();
+        //    return manual;
+        //}
         /// <summary>
         ///  save the project to a file as a binary format.
         /// user will give the filepath and the object that need to save as two paramaters.

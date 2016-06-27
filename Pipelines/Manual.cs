@@ -29,18 +29,18 @@ namespace Pipelines
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             fh = new FileHelper();
-            manual = fh.GettingManual();
-            foreach (string s in manual)
-            {
-                listBox1.Items.Add(s);
-            }
+          //  manual = fh.GettingManual();
+            this.WindowState = FormWindowState.Normal;
+          
+
+
         }
         /// <summary>
         /// open manual in pdf
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btopenPDF_Click(object sender, EventArgs e)
+        private void btopenPDF_Click_1(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;//binary position
             path = path + "Manual.pdf";
@@ -58,10 +58,12 @@ namespace Pipelines
             System.Diagnostics.Process.Start(path);
         }
         /// <summary>
-        /// open manual in pdf
+        /// open manual in word
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+       
+
         private void btopen_Click(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;//binary position.
