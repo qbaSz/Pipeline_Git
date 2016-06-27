@@ -85,6 +85,7 @@ namespace Pipelines
             catch (Exception)
             {
                 MessageBox.Show("Not a valid file!");
+              
                 return null;
             }
         }

@@ -35,6 +35,7 @@ namespace Pipelines
 
         private void pbPipeline_Paint(object sender, PaintEventArgs e)
         {
+            
             pg.Paint(e.Graphics);
         }
 
@@ -237,8 +238,10 @@ namespace Pipelines
         {
             try
             {
+
                 string filename = "";
-                DialogResult dr = saveFileDialog1.ShowDialog();
+                saveFileDialog1.DefaultExt = "np";
+                DialogResult dr = saveFileDialog1.ShowDialog();              
                 if (dr == DialogResult.OK)
                 {
                     path = filename = saveFileDialog1.FileName;
@@ -271,8 +274,12 @@ namespace Pipelines
                 }
             }
             string filename = "";
+            
+            
             OpenFileDialog newfile = new OpenFileDialog();
-            DialogResult dr = newfile.ShowDialog();
+            newfile.DefaultExt = ".np"; // Default file extension
+           newfile.Filter = "Flie (.np)|*.np"; // Filter files by extension  
+            DialogResult dr = newfile.ShowDialog();           
             if (dr == DialogResult.OK)
             {
                 path = filename = newfile.FileName;
@@ -285,7 +292,7 @@ namespace Pipelines
                 }
 
                 pbPipeline.Invalidate();
-                changes = true;
+                changes = false;
                 this.Text = filename;
 
             }
@@ -296,9 +303,7 @@ namespace Pipelines
         {
             if (changes)
             {
-              //  DialogResult result1 = MessageBox.Show("Do you really want to create a new project?", "new project?", MessageBoxButtons.YesNo);
-              //  if (result1 == DialogResult.Yes)
-              
+
                     DialogResult result = MessageBox.Show("Do you want to save the previous work?", "save?", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
@@ -310,12 +315,13 @@ namespace Pipelines
                         }
                     
                 }
+                changes = false;
 
             }
-            else
-                changes = false;
+            
             NewFile();
             path = "";
+            this.Text = "New Project";
 
         }
 
