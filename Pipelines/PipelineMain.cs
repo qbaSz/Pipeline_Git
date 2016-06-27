@@ -43,27 +43,27 @@ namespace Pipelines
             Point pt = new Point(e.X - Component.Size / 2, e.Y - Component.Size / 2);
             if (buttonPump.Checked)
             {
-                pg.AddPump(Convert.ToDouble(numCurrentFlow.Value), Convert.ToDouble(numCapacity.Value), pt);
+             changes=pg.AddPump(Convert.ToDouble(numCurrentFlow.Value), Convert.ToDouble(numCapacity.Value), pt);
             }
             else if (buttonSink.Checked)
             {
-                pg.AddSink(pt, Convert.ToDouble(numCapacity.Value));
+               changes= pg.AddSink(pt, Convert.ToDouble(numCapacity.Value));
             }
             else if (buttonMerger.Checked)
             {
-                pg.AddMerger(pt);
+                changes = pg.AddMerger(pt);
             }
             else if (buttonDelete.Checked)
             {
-                pg.Delete(new Point(e.X, e.Y));
+               changes= pg.Delete(new Point(e.X, e.Y));
             }
             else if (buttonSplitter.Checked)
             {
-                pg.AddSplitter(pt);
+                changes = pg.AddSplitter(pt);
             }
             else if (buttonAdjSplitter.Checked)
             {
-                pg.AddAdjustableSplitter(pt, Convert.ToDouble(numPercentage.Value / 100));
+                changes = pg.AddAdjustableSplitter(pt, Convert.ToDouble(numPercentage.Value / 100));
             }else if (buttonEdit.Checked)
             {
                 EditComponent(new Point(e.X, e.Y));
@@ -72,8 +72,10 @@ namespace Pipelines
             {
                 pg.AddPipe(new Point(e.X, e.Y), (double)numCapacity.Value);
             }
+           
 
             pbPipeline.Invalidate();
+          
         }
         /*
         private void pbPipeline_MouseDown(object sender, MouseEventArgs e)
@@ -152,7 +154,7 @@ namespace Pipelines
 
         private void buttonDelete_MouseClick(object sender, MouseEventArgs e)
         {
-            NumInputsToggle(false, false, false);
+           NumInputsToggle(false, false, false);
         }
 
         private void buttonEdit_MouseClick(object sender, MouseEventArgs e)
@@ -255,7 +257,7 @@ namespace Pipelines
         {
 
 
-            if (!changes)
+            if (changes)
             {
                 DialogResult result = MessageBox.Show("Do you want to save the previous work?", "save?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
@@ -292,11 +294,11 @@ namespace Pipelines
       
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            if (!changes)
+            if (changes)
             {
-                DialogResult result1 = MessageBox.Show("Do you really want to create a new project?", "new project?", MessageBoxButtons.YesNo);
-                if (result1 == DialogResult.Yes)
-                {
+              //  DialogResult result1 = MessageBox.Show("Do you really want to create a new project?", "new project?", MessageBoxButtons.YesNo);
+              //  if (result1 == DialogResult.Yes)
+              
                     DialogResult result = MessageBox.Show("Do you want to save the previous work?", "save?", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
@@ -306,7 +308,7 @@ namespace Pipelines
                         {
                             fh.SaveToFile(path, pg);
                         }
-                    }
+                    
                 }
 
             }
@@ -368,7 +370,7 @@ namespace Pipelines
 
         private void PipelineMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (changes)
+            if (!changes)
             {
                 DialogResult result = MessageBox.Show("Do you really want to quit?", "Quit?", MessageBoxButtons.YesNoCancel);
                 if (result != DialogResult.Yes)
@@ -394,5 +396,7 @@ namespace Pipelines
                 }
             }
         }
+
+      
     }
 }

@@ -35,7 +35,7 @@ namespace Pipelines
             }
         }
 
-        public void AddPump(double currentFlow, double capacity, Point pt)
+        public bool AddPump(double currentFlow, double capacity, Point pt)
         {
             if (currentFlow > capacity)
             {
@@ -45,17 +45,21 @@ namespace Pipelines
             {
                 Pump tempPump = new Pump(currentFlow, capacity, pt);
                 componentList.Add(tempPump);
+                return true;
             }
+            return false;
             
         }
 
-        public void AddSink(Point pt, double capacity)
+        public bool AddSink(Point pt, double capacity)
         {
             if (CheckCollision(pt) == null)
             {
                 Sink tempSink = new Sink(pt, capacity);
                 componentList.Add(tempSink);
+                return true;
             }
+            return false;
         }
 
         public void AddStartPipePt(Point pt, double capacity)
@@ -151,31 +155,37 @@ namespace Pipelines
             }
         }
 
-        public void AddMerger(Point pt)
+        public bool AddMerger(Point pt)
         {
             if (CheckCollision(pt) == null)
             {
                 Merger tempMerger = new Merger(pt);
                 componentList.Add(tempMerger);
+                return true;
             }
+            return false;
         }
 
-        public void AddSplitter(Point pt)
+        public bool AddSplitter(Point pt)
         {
             if (CheckCollision(pt) == null)
             {
                 Splitter tempSplitter = new Splitter(pt);
                 componentList.Add(tempSplitter);
+                return true;
             }
+            return false;
         }
 
-        public void AddAdjustableSplitter(Point pt, double percentage)
+        public bool AddAdjustableSplitter(Point pt, double percentage)
         {
             if (CheckCollision(pt) == null)
             {
                 AdjustableSplitter tempSplitter = new AdjustableSplitter(pt, percentage);
                 componentList.Add(tempSplitter);
+                return true;
             }
+            return false;
         }
 
         public Component CheckCollision(Point pt)
@@ -214,7 +224,7 @@ namespace Pipelines
             return null;
         }
 
-        public void Delete(Point pt)
+        public bool Delete(Point pt)
         {
             Component cmp = FindComponent(pt);
             Pipe ppe = CheckCollisionPipe(pt);
@@ -222,14 +232,17 @@ namespace Pipelines
             {
                 cmp.Delete(pipeList);
                 componentList.Remove(cmp);
+               return false;
             }
             else if (ppe != null)
             {
                 ppe.Delete();
                 pipeList.Remove(ppe);
+                return false;
             }
+            return true;
         }
-
+      
        
 
         public void ClearTempPipe()
