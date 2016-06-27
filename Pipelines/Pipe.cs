@@ -37,7 +37,7 @@ namespace Pipelines
             {
                 int anchorPointsCountHalf = anchorPoints.Count / 2;
                 CalculateLineEquation(anchorPoints[anchorPointsCountHalf - 1], anchorPoints[anchorPointsCountHalf]);
-                var labelXPos = (float)CalculateLabelX(anchorPoints[anchorPointsCountHalf - 1], anchorPoints[anchorPointsCountHalf], (int)(segmentLength * 0.75));
+                var labelXPos = (float)CalculateLabelX(anchorPoints[anchorPointsCountHalf - 1], anchorPoints[anchorPointsCountHalf], (int)(segmentLength * 0.50));
                 var labelPosition = new PointF(labelXPos, (float)(a * labelXPos + b));
                 Pen pen = new Pen(Overflow(), width);
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
