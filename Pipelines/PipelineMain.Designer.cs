@@ -73,9 +73,9 @@
             this.flowLayoutPanel1.Controls.Add(this.buttonAdjSplitter);
             this.flowLayoutPanel1.Controls.Add(this.buttonDelete);
             this.flowLayoutPanel1.Controls.Add(this.buttonEdit);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 52);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 29);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(72, 447);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(72, 416);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // buttonPump
@@ -201,7 +201,6 @@
             this.buttonDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.buttonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.buttonDelete.UseVisualStyleBackColor = true;
-   //         this.buttonDelete.CheckedChanged += new System.EventHandler(this.buttonDelete_CheckedChanged);
             this.buttonDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDelete_MouseClick);
             // 
             // buttonEdit
@@ -272,7 +271,7 @@
             // pbPipeline
             // 
             this.pbPipeline.BackColor = System.Drawing.Color.White;
-            this.pbPipeline.Location = new System.Drawing.Point(80, 52);
+            this.pbPipeline.Location = new System.Drawing.Point(82, 27);
             this.pbPipeline.Name = "pbPipeline";
             this.pbPipeline.Size = new System.Drawing.Size(1041, 565);
             this.pbPipeline.TabIndex = 0;
@@ -361,7 +360,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 589);
+            this.ClientSize = new System.Drawing.Size(1134, 598);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.labelPercentage);
             this.Controls.Add(this.numPercentage);

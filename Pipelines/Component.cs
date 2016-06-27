@@ -15,12 +15,7 @@ namespace Pipelines
         private Point pos;
         public enum io { input, output };
 
-        public Point Pos
-        {
-            get { return pos; }
-            set { pos = value; }
-        }
-
+        public Point Pos { get { return pos; } set { pos = value; } }
         public EventHandler<ComponentEventArgs> OutputChanged;
         public static int Size { get { return size; } }
         public virtual void Draw(Graphics graphic) { }
@@ -33,9 +28,7 @@ namespace Pipelines
         public bool Contains(Point pt)
         {
             if (pt == pos || ((pt.X > this.pos.X && pt.X < this.pos.X + size) && (pt.Y > this.pos.Y && pt.Y < this.pos.Y + size)))
-            {
                 return true;
-            }
             return false;
         }
 

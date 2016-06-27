@@ -10,39 +10,16 @@ namespace Pipelines
     [Serializable]
     class Splitter : Component
     {
+        protected Color color = Color.Cyan;
+        private double percentOut1 = 0;
         private Pipe outputPipe1;
-
-        public Pipe OutputPipe1
-        {
-            get { return outputPipe1; }
-            set { outputPipe1 = value; }
-        }
-
+        private Pipe outputPipe2;
         private Pipe inputPipe;
 
-        public Pipe InputPipe
-        {
-            get { return inputPipe; }
-            set { inputPipe = value; }
-        }
-
-        private Pipe outputPipe2;
-
-        public Pipe OutputPipe2
-        {
-            get { return outputPipe2; }
-            set { outputPipe2 = value; }
-        }
-
-        private double percentOut1 = 0;
-
-        public double PercentOut1
-        {
-            get { return percentOut1; }
-            set { percentOut1 = value; }
-        }
-
-        protected Color color = Color.Cyan;
+        public Pipe OutputPipe1 { get { return outputPipe1; } set { outputPipe1 = value; } }
+        public Pipe InputPipe { get { return inputPipe; } set { inputPipe = value; } }
+        public Pipe OutputPipe2 { get { return outputPipe2; } set { outputPipe2 = value; } }
+        public double PercentOut1 { get { return percentOut1; } set { percentOut1 = value; } }
 
         public Splitter(Point pt)
         {
@@ -169,9 +146,7 @@ namespace Pipelines
         public override void OnOutputChanged(object sender, ComponentEventArgs args)
         {
             if (args.Pipe.EndComponent != null)
-            {
                args.Pipe.EndComponent.UpdateOutput();
-            }
         }
     }
 }

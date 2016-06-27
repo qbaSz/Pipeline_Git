@@ -13,11 +13,8 @@ namespace Pipelines
     public partial class PipelineMain : Form
     {
         PipelineGround pg = new PipelineGround();
-        
-
         FileHelper fh;
         bool changes = false;
-
         string path = "";
         /// <summary>
         /// for changeng the value to various components
@@ -35,7 +32,6 @@ namespace Pipelines
 
         private void pbPipeline_Paint(object sender, PaintEventArgs e)
         {
-            
             pg.Paint(e.Graphics);
         }
 
@@ -44,11 +40,11 @@ namespace Pipelines
             Point pt = new Point(e.X - Component.Size / 2, e.Y - Component.Size / 2);
             if (buttonPump.Checked)
             {
-             changes=pg.AddPump(Convert.ToDouble(numCurrentFlow.Value), Convert.ToDouble(numCapacity.Value), pt);
+               changes = pg.AddPump(Convert.ToDouble(numCurrentFlow.Value), Convert.ToDouble(numCapacity.Value), pt);
             }
             else if (buttonSink.Checked)
             {
-               changes= pg.AddSink(pt, Convert.ToDouble(numCapacity.Value));
+               changes = pg.AddSink(pt, Convert.ToDouble(numCapacity.Value));
             }
             else if (buttonMerger.Checked)
             {
@@ -56,7 +52,7 @@ namespace Pipelines
             }
             else if (buttonDelete.Checked)
             {
-               changes= pg.Delete(new Point(e.X, e.Y));
+               changes = pg.DeleteElementFromGround(new Point(e.X, e.Y));
             }
             else if (buttonSplitter.Checked)
             {
@@ -73,29 +69,10 @@ namespace Pipelines
             {
                 pg.AddPipe(new Point(e.X, e.Y), (double)numCapacity.Value);
             }
-           
-
             pbPipeline.Invalidate();
           
         }
-        /*
-        private void pbPipeline_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (buttonPipe.Checked)
-            {
-                pg.AddStartPipePt(new Point(e.X, e.Y), Convert.ToDouble(numCapacity.Value));
-            }
-        }
-
-        private void pbPipeline_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (buttonPipe.Checked)
-            {
-                pg.AddEndPipePt(new Point(e.X, e.Y));
-            }
-            pbPipeline.Refresh();
-        }
-        */
+        
         private void NumPercentageToggle(bool visible)
         {
             labelPercentage.Visible = visible;
@@ -215,22 +192,19 @@ namespace Pipelines
             Reset();
             pbPipeline.Invalidate();
         }
+
         public void Reset()
         {
             pg.ComponentList.Clear();
             pg.pipelist.Clear();
-            //  fh = new FileHelper();
-
-
         }
+
         public void ClearNumericBox()
         {
             foreach (Control c in Controls)
             {
                 if (c is NumericUpDown)
-                {
                     ((NumericUpDown)c).Value = 0;
-                }
             }
         }
 
@@ -238,7 +212,6 @@ namespace Pipelines
         {
             try
             {
-
                 string filename = "";
                 saveFileDialog1.DefaultExt = "np";
                 DialogResult dr = saveFileDialog1.ShowDialog();              
@@ -247,7 +220,6 @@ namespace Pipelines
                     path = filename = saveFileDialog1.FileName;
                     fh.SaveToFile(filename, pg);
                     changes = true;
-                  //  MessageBox.Show("Saving is done.");
                 }
             }
             catch (Exception ex)
@@ -258,8 +230,6 @@ namespace Pipelines
         }
         private void OpenFile()
         {
-
-
             if (changes)
             {
                 DialogResult result = MessageBox.Show("Do you want to save the previous work?", "save?", MessageBoxButtons.YesNo);
@@ -273,12 +243,11 @@ namespace Pipelines
                     }
                 }
             }
+            
             string filename = "";
-            
-            
             OpenFileDialog newfile = new OpenFileDialog();
             newfile.DefaultExt = ".np"; // Default file extension
-           newfile.Filter = "Flie (.np)|*.np"; // Filter files by extension  
+            newfile.Filter = "Flie (.np)|*.np"; // Filter files by extension  
             DialogResult dr = newfile.ShowDialog();           
             if (dr == DialogResult.OK)
             {
@@ -287,9 +256,7 @@ namespace Pipelines
                 Reset();
                 pg = fh.LoadFromFile(filename);
                 if (pg == null)
-                {
                     pg = new PipelineGround();
-                }
 
                 pbPipeline.Invalidate();
                 changes = false;
@@ -297,32 +264,24 @@ namespace Pipelines
 
             }
         }
-
       
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (changes)
             {
-
-                    DialogResult result = MessageBox.Show("Do you want to save the previous work?", "save?", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        if (path == "")
-                            SaveToFile();
-                        else
-                        {
-                            fh.SaveToFile(path, pg);
-                        }
-                    
+                DialogResult result = MessageBox.Show("Do you want to save the previous work?", "save?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (path == "")
+                        SaveToFile();
+                    else
+                        fh.SaveToFile(path, pg);
                 }
                 changes = false;
-
             }
-            
             NewFile();
             path = "";
             this.Text = "New Project";
-
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -332,13 +291,11 @@ namespace Pipelines
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (path != "")
                 try
                 {
                     fh.SaveToFile(path, pg);
                     changes = true;
-                   // MessageBox.Show("saving is done.");
                 }
                 catch (Exception ex)
                 {
@@ -362,6 +319,7 @@ namespace Pipelines
         {
             ViewManual();
         }
+
         private void ViewManual()
         {
             Manual newManual = new Manual();
@@ -369,6 +327,7 @@ namespace Pipelines
             this.openManualToolStripMenuItem.Enabled = false;
             newManual.FormClosing += newManual_FormClosing;
         }
+
         private void newManual_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.openManualToolStripMenuItem.Enabled = true;
@@ -392,17 +351,11 @@ namespace Pipelines
                     if (path == "")
                         SaveToFile();
                     else
-                    {
                         fh.SaveToFile(path, pg);
-                    }
                 }
                 if (Want2Save == DialogResult.Cancel)
-                {
                     e.Cancel = true;
-                }
             }
         }
-
-      
     }
 }

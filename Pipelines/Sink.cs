@@ -10,24 +10,18 @@ namespace Pipelines
     [Serializable]
     class Sink : Component
     {
-
-        //private double input = 0;
         private Pipe inputPipe;
         private double capacity = 0;
 
         public double Capacity { get { return capacity; } set { capacity = value; } }
-
         public double Input
         { 
             get
             { 
-                if(inputPipe != null) 
-                { 
-                    return this.inputPipe.Flow; 
-                } 
+                if(inputPipe != null)
+                    return this.inputPipe.Flow;
                 return 0; 
-            }
-            //set { input = value; } 
+            } 
         }
 
         public Sink(Point p, double capacity)

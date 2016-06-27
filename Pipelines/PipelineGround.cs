@@ -11,15 +11,10 @@ namespace Pipelines
         List<Component> componentList = new List<Component>();
         List<Pipe> pipeList = new List<Pipe>();
         Pipe tempPipe = null;
-        //for returng list of components and list of pipe
         public List<Component> ComponentList { get { return componentList; } }
         public List<Pipe> pipelist { get { return pipeList; } }
-        //  private ComponentPropertiesForm propertiesForm;
 
-        public PipelineGround()
-        {
-           // propertiesForm = new ComponentPropertiesForm();
-        }
+        public PipelineGround() { }
 
         public void Paint(Graphics graphic)
         {
@@ -70,45 +65,15 @@ namespace Pipelines
                 tempPipe = new Pipe(capacity);
                 tempPipe.AddAnchorPoint(pt);
                 if (cmp.AddPipe(tempPipe, Component.io.output))
-                {
                     tempPipe.StartComponent = cmp;
-                    Console.WriteLine("Start component added");
-                }
                 else
-                {
                     tempPipe = null;
-                }
             }
         }
 
         public void AddEndPipePt(Point pt)
         {
             Component cmp = FindComponent(pt);
-            //if(tempPipe != null)
-            //{
-            //    if (tempPipe.StartComponent != null && cmp != null && cmp != tempPipe.StartComponent)
-            //    {
-            //        if (cmp.AddPipe(tempPipe, Component.io.input))
-            //        {
-            //            tempPipe.EndComponent = cmp;
-            //            pipeList.Add(tempPipe);
-            //            tempPipe.AddAnchorPoint(pt);
-            //            tempPipe.StartComponent.OutputChanged += tempPipe.EndComponent.OnOutputChanged;
-            //            tempPipe = null;
-            //        }
-            //        else
-            //        {
-            //            tempPipe.StartComponent.DeletePipe(tempPipe);
-            //            tempPipe = null;
-            //        }
-
-            //    }
-            //    else if ((tempPipe.StartComponent != null && cmp == null) || (tempPipe.StartComponent != null && cmp == tempPipe.StartComponent))
-            //    {
-            //        tempPipe.StartComponent.DeletePipe(tempPipe);
-            //        tempPipe = null;
-            //    }
-            //}
             if (cmp == tempPipe.StartComponent)
             {
                 tempPipe.StartComponent.DeletePipe(tempPipe);
@@ -134,9 +99,7 @@ namespace Pipelines
         public void AddPipesAnchorPoint(Point pt)
         {
             if(tempPipe != null)
-            {
                 tempPipe.AddAnchorPoint(pt);
-            }
         }
 
         public void AddPipe(Point pt, double capacity)
@@ -193,9 +156,7 @@ namespace Pipelines
             foreach (Component cmp in componentList)
             {
                 if (Math.Abs(cmp.Pos.X - pt.X) < Component.Size && Math.Abs(cmp.Pos.Y - pt.Y) < Component.Size)
-                {
                     return cmp;
-                }
             }
             return null;
         }
@@ -205,9 +166,7 @@ namespace Pipelines
             foreach (Component cmp in componentList)
             {
                 if (cmp.Contains(pt))
-                {
                     return cmp;
-                }
             }
             return null;
         }
@@ -217,14 +176,12 @@ namespace Pipelines
             foreach (Pipe p in pipeList)
             {
                 if (p.Contains(pt))
-                {
                     return p;
-                }
             }
             return null;
         }
 
-        public bool Delete(Point pt)
+        public bool DeleteElementFromGround(Point pt)
         {
             Component cmp = FindComponent(pt);
             Pipe ppe = CheckCollisionPipe(pt);

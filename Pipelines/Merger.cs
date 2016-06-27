@@ -130,9 +130,7 @@ namespace Pipelines
         public override void OnOutputChanged(object sender, ComponentEventArgs args)
         {
             if (args.Pipe.EndComponent != null)
-            {
                 args.Pipe.EndComponent.UpdateOutput();
-            }
         }
     }
 }

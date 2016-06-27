@@ -15,53 +15,33 @@ namespace Pipelines
         private const int width = 8;
         private const int labelDistance = 50;
         private char label = ' ';
-        private double a, b, pipeLength;
+        private double a, b, segmentLength; //y = ax + b
+        private double capacity;
+        private double flow;
         private List<Point> anchorPoints = new List<Point>();
 
-        private double capacity;
-
         public double Capacity { get { return capacity; } set { capacity = value; } }
-
+        public char Label { set { label = value; } }
+        public double Flow { get { return flow; } set { flow = value; } }
+        public Component EndComponent { get { return endComponent; } set { endComponent = value; } }
+        public Component StartComponent { get { return startComponent; } set { startComponent = value; } }
+        
         public Pipe(double capacity)
         {
             this.capacity = capacity;
-        }
-
-        public char Label
-        {
-            set { label = value; }
-        }
-
-        private double flow;
-
-        public double Flow
-        {
-            get { return flow; }
-            set { flow = value; }
-        }
-        
-
-        public Component EndComponent
-        {
-            get { return endComponent; }
-            set { endComponent = value; }
-        }
-
-
-        public Component StartComponent
-        {
-            get { return startComponent; }
-            set { startComponent = value; }
         }
 
         public void Draw(Graphics graphic)
         {
             if (anchorPoints.Count > 1)
             {
+                int anchorPointsCountHalf = anchorPoints.Count / 2;
+                CalculateLineEquation(anchorPoints[anchorPointsCountHalf - 1], anchorPoints[anchorPointsCountHalf]);
+                var labelXPos = (float)CalculateLabelX(anchorPoints[anchorPointsCountHalf - 1], anchorPoints[anchorPointsCountHalf], (int)(segmentLength * 0.75));
+                var labelPosition = new PointF(labelXPos, (float)(a * labelXPos + b));
                 Pen pen = new Pen(Overflow(), width);
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                //CalculateLineEquation(new Point(StartComponent.Pos.X + Component.Size / 2, StartComponent.Pos.Y + Component.Size / 2), new Point(EndComponent.Pos.X + Component.Size / 2, EndComponent.Pos.Y + Component.Size / 2));
-                CalculateLineEquation(anchorPoints[(int)(anchorPoints.Count / 2) - 1], anchorPoints[(int)(anchorPoints.Count / 2)]);
+
                 for (int i = 0; i < anchorPoints.Count - 1; i++)
                 {
                     graphic.DrawLine(pen, anchorPoints[i].X, anchorPoints[i].Y, anchorPoints[i + 1].X, anchorPoints[i + 1].Y);
@@ -69,9 +49,9 @@ namespace Pipelines
 
                 if (StartComponent.GetType() == typeof(Splitter) || StartComponent.GetType() == typeof(AdjustableSplitter))
                 {
-                    graphic.DrawString("\n" + this.label.ToString() + " = " + this.flow.ToString(), new Font("Arial", 10, FontStyle.Bold), Brushes.Black, (int)CalculateLabelX(anchorPoints[(int)(anchorPoints.Count / 2) - 1], anchorPoints[(int)(anchorPoints.Count / 2)], (int)(pipeLength * 0.75)), (int)(a * CalculateLabelX(anchorPoints[(int)(anchorPoints.Count / 2) - 1], anchorPoints[(int)(anchorPoints.Count / 2)], (int)(pipeLength * 0.75)) + b));
+                    graphic.DrawString("\n" + this.label.ToString() + " = " + this.flow.ToString(), new Font("Arial", 10, FontStyle.Bold), Brushes.Black, labelPosition);
                 }
-                graphic.DrawString("Cap: " + this.capacity.ToString(), new Font("Arial", 9, FontStyle.Bold), Brushes.Brown, (int)CalculateLabelX(anchorPoints[(int)(anchorPoints.Count / 2) - 1], anchorPoints[(int)(anchorPoints.Count / 2)], (int)(pipeLength * 0.75)), (int)(a * CalculateLabelX(anchorPoints[(int)(anchorPoints.Count / 2) - 1], anchorPoints[(int)(anchorPoints.Count / 2)], (int)(pipeLength * 0.75)) + b));
+                graphic.DrawString("Cap: " + this.capacity.ToString(), new Font("Arial", 9, FontStyle.Bold), Brushes.Brown, labelPosition);
             }
             
         }
@@ -79,9 +59,7 @@ namespace Pipelines
         private Color Overflow()
         {
             if (this.capacity < this.flow)
-            {
                 return Color.Red;
-            }
             return Color.LightGreen;
         }
 
@@ -98,9 +76,7 @@ namespace Pipelines
             {
                 result = SegmentContainsPoint(anchorPoints[i], anchorPoints[i + 1], pt);
                 if (result)
-                {
                     break;
-                }
             }
             return result;
         }
@@ -139,14 +115,12 @@ namespace Pipelines
         {
             this.a = (double)(startPt.Y - endPt.Y) / (double)(startPt.X - endPt.X);
             this.b = startPt.Y - a * startPt.X;
-            this.pipeLength = Math.Sqrt(Math.Pow(endPt.X - startPt.X, 2) + Math.Pow(endPt.Y - startPt.Y, 2));
+            this.segmentLength = Math.Sqrt(Math.Pow(endPt.X - startPt.X, 2) + Math.Pow(endPt.Y - startPt.Y, 2));
         }
 
         private double CalculateLabelX(Point startPt, Point endPt, int distance)
         {
-            //Point startPt = new Point(StartComponent.Pos.X + Component.Size / 2, StartComponent.Pos.Y + Component.Size / 2);
-            //Point endPt = new Point(EndComponent.Pos.X + Component.Size / 2, EndComponent.Pos.Y + Component.Size / 2);
-            return ((distance) * (endPt.X - startPt.X))/(this.pipeLength) + startPt.X;
+            return ((distance) * (endPt.X - startPt.X))/(this.segmentLength) + startPt.X;
         }
 
         public void AddAnchorPoint(Point pt)

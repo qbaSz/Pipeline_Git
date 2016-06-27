@@ -17,8 +17,6 @@ namespace Pipelines
         /// variables used for loading manaul from file
         /// </summary>
         FileHelper fh = null;
-        List<string> manual = null;
-
         /// <summary>
         /// form is initialized and manual is loaded in list box
         /// </summary>
@@ -29,11 +27,7 @@ namespace Pipelines
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             fh = new FileHelper();
-          //  manual = fh.GettingManual();
             this.WindowState = FormWindowState.Normal;
-          
-
-
         }
         /// <summary>
         /// open manual in pdf
@@ -62,8 +56,6 @@ namespace Pipelines
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       
-
         private void btopen_Click(object sender, EventArgs e)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;//binary position.
